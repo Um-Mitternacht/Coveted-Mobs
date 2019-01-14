@@ -160,7 +160,7 @@ task apiJar(type: Jar) {
     classifier = 'api'
     from sourceSets.main.output //Save .class files
     from sourceSets.main.allJava //Save corresponding .java files
-    include 'com/bewitchment/api/**/*' //Only include the api directory and subdirectory
+    include 'com/covetedmobs/api/**/*' //Only include the api directory and subdirectory
 }
 
 artifacts {
