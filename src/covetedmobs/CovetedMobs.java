@@ -1,4 +1,32 @@
+package src.covetedmobs;
+
+//R DZH SVIV
+//HFMXLMFIV11
+//HKRMLHZFIFH111
+//MLGOVTZOGVMWVI
+//OVHLERPP
+//WZGFIZ
+//GSILFTS GSVHV ORMVH R WL WVXIVV
+//GSZG YB NVIVOB KFGGRMT NB MZNV RM
+//NB RMUOFVMXV TILDH, ZMW GSFH, R YVXLNV RNNLIGZO
+//XBYVIMVGRX DVY
+
+
+//GL HLNV, R ZN YFG Z HSZWV
+//YFG SVIV, R VCVIG KLDVI LEVI GSVN
+//R NZWV Z XZHGOV SVIV LM GSRH SROO
+//ZMW SZEV KFG NB UOZT RM GSV TILFMW
+//GSRH RH NB MVD DLIOW
+
+
+//HSLFOW GSV GIVHKZHHVIH LU GSV LOW DLIOW
+//ZIIREV SVIV, YVZIRMT SLHGRORGRVH
+//GSVB DROO YV NVG DRGS DIZGS
+
+@Mod(modid = Bewitchment.MODID, name = Bewitchment.NAME, version = Bewitchment.VERSION, guiFactory = Bewitchment.GUI_FACTORY)
 public class CovetedMobs {
+	
+	public static final String MODID = "coveted_mobs", NAME = "Coveted_Mobs", VERSION = "1.0.0", GUI_FACTORY = "";
 	
 	public static final Logger logger = LogManager.getLogger(NAME);
 	
