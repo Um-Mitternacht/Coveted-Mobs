@@ -33,21 +33,21 @@ import java.util.function.Predicate;
 public class ClientProxy extends ServerProxy {
 	public static final Map<Item, ModelBase> IDOL_MODELS = new HashMap<>();
 	public static final Map<Item, ResourceLocation> IDOL_TEXTURES = new HashMap<>();
-
+	
 	@SubscribeEvent
 	public static void stitch(TextureStitchEvent.Pre event) {
 	}
-
+	
 	public static void registerIdol(Item item, ModelBase model, ResourceLocation texture) {
 		IDOL_MODELS.put(item, model);
 		IDOL_TEXTURES.put(item, texture);
 	}
-
+	
 	@Override
 	public List<ItemStack> getEntireInventory(EntityPlayer unused) {
 		return super.getEntireInventory(Minecraft.getMinecraft().player);
 	}
-
+	
 	public boolean doesPlayerHaveAdvancement(EntityPlayer player, ResourceLocation name) {
 		if (player instanceof EntityPlayerSP) {
 			ClientAdvancementManager manager = ((EntityPlayerSP) player).connection.getAdvancementManager();
@@ -59,25 +59,25 @@ public class ClientProxy extends ServerProxy {
 		}
 		return super.doesPlayerHaveAdvancement(player, name);
 	}
-
+	
 	@Override
 	public boolean isFancyGraphicsEnabled() {
 		return Minecraft.getMinecraft().gameSettings.fancyGraphics;
 	}
-
+	
 	@Override
 	public void registerRendersInit() {
 	}
-
+	
 	@Override
 	public void registerRendersPreInit() {
 	}
-
+	
 	@Override
 	public void registerTexture(Item item, String variant) {
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), variant));
 	}
-
+	
 	@Override
 	public void registerTextureVariant(Item item, List<Predicate<ItemStack>> predicates) {
 		ResourceLocation[] names = new ResourceLocation[predicates.size() + 1];
@@ -90,7 +90,7 @@ public class ClientProxy extends ServerProxy {
 			return new ModelResourceLocation(item.getRegistryName(), "inventory");
 		});
 	}
-
+	
 	@Override
 	public void ignoreProperty(Block block, IProperty<?>... properties) {
 		ModelLoader.setCustomStateMapper(block, new StateMap.Builder().ignore(properties).build());
