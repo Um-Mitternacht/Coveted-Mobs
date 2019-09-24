@@ -1,5 +1,20 @@
 package com.covetedmobs.proxy;
 
+import baubles.api.BaublesApi;
+import com.covetedmobs.CovetedMobs;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 @SuppressWarnings({"unused"})
 public class ServerProxy {
 	public List<ItemStack> getEntireInventory(EntityPlayer player) {

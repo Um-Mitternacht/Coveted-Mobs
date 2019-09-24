@@ -11,8 +11,8 @@
   "credits": "To all contributors of the mod.",
   "logoFile": "",
   "screenshots": [],
-  "requiredMods": ["forge"],
-  "dependencies": ["forge"],
+  "requiredMods": ["forge", "baubles"],
+  "dependencies": ["forge", "baubles"],
   "useDependencyInformation": true
 }
 ]

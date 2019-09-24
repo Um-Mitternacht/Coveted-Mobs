@@ -23,7 +23,9 @@ package com.covetedmobs;
 //ZIIREV SVIV, YVZIRMT SLHGRORGRVH
 //GSVB DROO YV NVG DRGS DIZGS
 
+import com.covetedmobs.proxy.ServerProxy;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,14 +34,14 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = CovetedMobs.MODID, name = CovetedMobs.NAME, version = CovetedMobs.VERSION, guiFactory = CovetedMobs.GUI_FACTORY)
 public class CovetedMobs {
 	
-	public static final String MODID = "coveted_mobs", NAME = "Coveted_Mobs", VERSION = "1.0.0", GUI_FACTORY = "";
+	public static final String MODID = "coveted_mobs", NAME = "Coveted Mobs", VERSION = "1.0.0", GUI_FACTORY = "";
 	public static final Logger logger = LogManager.getLogger(NAME);
 	@SidedProxy(serverSide = "com.covetedmobs.proxy.ServerProxy", clientSide = "com.covetedmobs.proxy.ClientProxy")
 	public static ServerProxy proxy;
 	@Mod.Instance
 	public static CovetedMobs instance;
 	
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger.info("We need another and a wiser and perhaps a more mystical concept of animals.");
 		logger.info("Remote from universal nature, and living by complicated artifice, man in civilization surveys the creature through the glass of his knowledge and sees thereby a feather magnified and the whole image in distortion.");
