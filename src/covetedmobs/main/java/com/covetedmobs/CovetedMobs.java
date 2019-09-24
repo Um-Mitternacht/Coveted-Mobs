@@ -33,10 +33,9 @@ import org.apache.logging.log4j.Logger;
 public class CovetedMobs {
 	
 	public static final String MODID = "coveted_mobs", NAME = "Coveted_Mobs", VERSION = "1.0.0", GUI_FACTORY = "";
+	public static final Logger logger = LogManager.getLogger(NAME);
 	@SidedProxy(serverSide = "com.covetedmobs.proxy.ServerProxy", clientSide = "com.covetedmobs.proxy.ClientProxy")
 	public static ServerProxy proxy;
-	public static final Logger logger = LogManager.getLogger(NAME);
-	
 	@Mod.Instance
 	public static CovetedMobs instance;
 	
