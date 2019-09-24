@@ -1,167 +1,56 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-        maven {
-            name = "gradle"
-            url "https://plugins.gradle.org/m2/"
-        }
-        maven {
-            name = "CurseForge"
-            url = "https://minecraft.curseforge.com/api/maven/"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
+		maven { url "https://plugins.gradle.org/m2/" }			
     }
-
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.0.7'
+	classpath 'com.wynprice.cursemaven:CurseMaven:1.2.2'
     }
 }
-
 apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: "checkstyle"
+apply plugin: 'com.wynprice.cursemaven'
 
-checkstyle {
-    toolVersion = "6.11.2"
-    configFile = new File(rootDir, "checkstyle/checkstyle.xml")
-}
+version = "1.12.2-0.0.1"
+group = "com.covetedmobs"
+archivesBaseName = "covetedmobs"
 
-version = "${mc_version}-${cm_version}"
-group = "com.covetedmobs" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Coveted-Mobs"
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-class StructExtApi {
-    String name
-    String api
-    String exclusion
-    String root = api
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
 }
 
 minecraft {
-    version = mc_forge_version
-    mappings = mcp_mappings
+    version = "1.12.2-14.23.5.2838"
     runDir = "run"
-
-    replace '@FINGERPRINT@', project.findProperty('signSHA1')
-    replace '@VERSION@', project.version
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+    mappings = "stable_39"
+    clientRunArgs += "--username=CovetedMobs"
 }
 
 repositories {
     flatDir {
         dirs 'libs'
     }
-    maven {
-        name = "Mobius Repo"
-        url = "http://tehnut.info/maven"
-    }
-    maven {
-        name = "JEI"
-        url = "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven {
-        name = "ModMaven"
-        url = "modmaven.k-4u.nl"
-    }
-    maven {
-        url "https://maven.mcmoddev.com/"
-    }
-    maven {
-        name = "ModMaven"
-        url = "modmaven.k-4u.nl"
-    }
-    maven {
-        url = 'https://maven.blamejared.com'
-    }
-    maven {
-        url "http://maven.tterrag.com/"
-    }
+    maven { url = "http://dvs1.progwml6.com/files/maven" }
+    maven { url = "https://minecraft.curseforge.com/api/maven" }
+    maven { url "http://maven.tterrag.com" }
+    maven { url "https://maven.blamejared.com" }
+    maven { url "https://maven.mcmoddev.com/" }
 }
 
 dependencies {
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
-    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfProvided "mezz.jei:jei_1.12.2:4.15.0.289"
 }
 
-tasks.withType(JavaCompile) {
-    options.compilerArgs += ["-Xlint:all", "-Xlint:deprecation", "-Xlint:rawtypes", "-Xlint:unchecked"]
-    options.deprecation = true
-    options.encoding = "UTF-8"
-}
-
-runClient {
-    if (project.hasProperty("mc_username") && project.hasProperty("mc_password")) {
-        args "--username=${project.mc_username}"
-        args "--password=${project.mc_password}"
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
-}
-
-task signJar(type: SignJar, dependsOn: reobfJar) {
-
-    // Skips if the keyStore property is missing.
-    onlyIf {
-        project.hasProperty('keyStore')
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
     }
-
-    // findProperty allows us to reference the property without it existing.
-    // Using project.propName would cause the script to fail validation if
-    // the property did not exist.
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
-}
-
-build.dependsOn signJar
-
-idea {
-    module {
-        inheritOutputDirs = true
-    }
-}
-
-jar {
-    from sourceSets.main.output
-    from sourceSets.api.output
-}
-
-task apiJar(type: Jar) {
-    classifier = 'api'
-    from sourceSets.main.output //Save .class files
-    from sourceSets.main.allJava //Save corresponding .java files
-    include 'com/covetedmobs/api/**/*' //Only include the api directory and subdirectory
-}
-
-artifacts {
-    archives apiJar
 }
