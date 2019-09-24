@@ -34,7 +34,7 @@ checkstyle {
     configFile = new File(rootDir, "checkstyle/checkstyle.xml")
 }
 
-version = "${mc_version}-${bw_version}"
+version = "${mc_version}-${cm_version}"
 group = "com.covetedmobs" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Coveted-Mobs"
 
