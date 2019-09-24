@@ -1,3 +1,5 @@
+package com.covetedmobs.proxy;
+
 @SuppressWarnings({"unused"})
 public class ServerProxy {
 	public List<ItemStack> getEntireInventory(EntityPlayer player) {
