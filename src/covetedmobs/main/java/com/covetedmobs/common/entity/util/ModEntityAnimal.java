@@ -3,6 +3,7 @@ package com.covetedmobs.common.entity.util;
 /**
  * Created by Joseph on 11/4/2019.
  */
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityAnimal;
