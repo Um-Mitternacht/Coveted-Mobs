@@ -1,5 +1,7 @@
 package com.covetedmobs.proxy;
 
+import com.covetedmobs.client.render.entity.living.herps.RenderBlindworm;
+import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.block.Block;
@@ -17,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -71,6 +74,7 @@ public class ClientProxy extends ServerProxy {
 	
 	@Override
 	public void registerRendersPreInit() {
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlindworm.class, RenderBlindworm::new);
 	}
 	
 	@Override

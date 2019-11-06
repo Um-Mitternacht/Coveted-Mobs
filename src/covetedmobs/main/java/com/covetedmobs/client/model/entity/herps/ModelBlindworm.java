@@ -1,5 +1,6 @@
 package com.covetedmobs.client.model.entity.herps;
 
+import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -104,9 +105,9 @@ public class ModelBlindworm extends ModelBase {
 	
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		EntityBlindworm blindworm = (EntityBlindworm) entity;
+		EntityBlindworm blindworm = (EntityBlindworm) entityIn;
 		
-		float time = ((entity.ticksExisted + Minecraft.getMinecraft().getRenderPartialTicks()) * 0.4F);
+		float time = ((entityIn.ticksExisted + Minecraft.getMinecraft().getRenderPartialTicks()) * 0.4F);
 		float angle = (float) (0.40F * ((blindworm.motionX + blindworm.motionZ) * 50));
 		this.neck00.rotateAngleY = (float) (Math.toRadians(15) + angle * MathHelper.sin(time - 1));
 		this.neck01.rotateAngleY = (float) (Math.toRadians(-15) + angle * MathHelper.sin(time + 1));
