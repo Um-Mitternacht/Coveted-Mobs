@@ -23,10 +23,13 @@ package com.covetedmobs;
 //ZIIREV SVIV, YVZIRMT SLHGRORGRVH
 //GSVB DROO YV NVG DRGS DIZGS
 
+import com.covetedmobs.common.handler.GuiHandler;
 import com.covetedmobs.proxy.ServerProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,6 +53,12 @@ public class CovetedMobs {
 		logger.info("For the animal shall not be measured by man.");
 		logger.info("In a world older and more complete than ours they moved finished and complete, gifted with extensions of the senses we have lost or never attained, living by voices we shall never hear.");
 		logger.info("They are not brethren, they are not underlings; they are other nations, caught with ourselves in the net of life and time, fellow prisoners of the splendour and travail of the earth.");
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(CovetedMobs.instance, new GuiHandler());
 	}
 	
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.registerRendersInit();
+	}
 }
