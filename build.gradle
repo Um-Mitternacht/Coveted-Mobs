@@ -13,8 +13,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.wynprice.cursemaven'
 
 version = "1.12.2-1.0.0"
-group = "com.coveted_mobs"
-archivesBaseName = "coveted_mobs"
+group = "com.covetedmobs"
+archivesBaseName = "covetedmobs"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
