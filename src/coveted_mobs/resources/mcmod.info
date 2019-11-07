@@ -1,6 +1,6 @@
 [
 {
-  "modid": "covetedmobs",
+  "modid": "coveted_mobs",
   "name": "Coveted Mobs",
   "description": "A mod specializing in mobs",
   "version":"${version}",
