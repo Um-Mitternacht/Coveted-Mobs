@@ -23,6 +23,7 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
 		return null;
 	}
+	
 	public enum ModGui {
 		STANDARD_ELEPHANT
 	}
