@@ -3,7 +3,6 @@ package com.covetedmobs.client.render.entity.living.herps;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.client.model.entity.herps.ModelBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
-import com.covetedmobs.registry.ModTextures;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -16,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 @SideOnly(Side.CLIENT)
 public class RenderBlindworm extends RenderLiving<EntityBlindworm> {
+	private static final ResourceLocation TEX = new ResourceLocation(CovetedMobs.MODID, "textures/entity/blindworm/blindworm.png");
 	
 	public RenderBlindworm(RenderManager manager) {
 		super(manager, new ModelBlindworm(), 0.1f);
@@ -23,7 +23,7 @@ public class RenderBlindworm extends RenderLiving<EntityBlindworm> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityBlindworm entity) {
-		return new ResourceLocation(CovetedMobs.MODID, "textures/entity/blindworm.png");
+		return TEX;
 	}
 	
 	@Override
