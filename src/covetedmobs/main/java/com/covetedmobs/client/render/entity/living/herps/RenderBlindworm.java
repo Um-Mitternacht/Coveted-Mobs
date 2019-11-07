@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Joseph on 11/6/2019.
  */
+@SuppressWarnings("NullableProblems")
 @SideOnly(Side.CLIENT)
 public class RenderBlindworm extends RenderLiving<EntityBlindworm> {
 	private static final ResourceLocation TEX = new ResourceLocation(CovetedMobs.MODID, "textures/entity/blindworm/blindworm.png");
