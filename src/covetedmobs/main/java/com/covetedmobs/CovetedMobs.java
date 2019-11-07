@@ -23,8 +23,11 @@ package com.covetedmobs;
 //ZIIREV SVIV, YVZIRMT SLHGRORGRVH
 //GSVB DROO YV NVG DRGS DIZGS
 
+import com.covetedmobs.client.handler.ClientHandler;
 import com.covetedmobs.common.handler.GuiHandler;
 import com.covetedmobs.proxy.ServerProxy;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -58,6 +61,7 @@ public class CovetedMobs {
 		
 		proxy.registerRendersPreInit();
 		NetworkRegistry.INSTANCE.registerGuiHandler(CovetedMobs.instance, new GuiHandler());
+		if (FMLCommonHandler.instance().getSide().isClient()) MinecraftForge.EVENT_BUS.register(new ClientHandler());
 	}
 	
 	@Mod.EventHandler
