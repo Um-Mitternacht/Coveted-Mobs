@@ -35,7 +35,7 @@ public class ModRegistries {
 		}
 		catch (Exception ignored) {}
 		
-		LootTableList.register(new ResourceLocation(CovetedMobs.MODID, "entities/herps/newt"));
-		LootTableList.register(new ResourceLocation(CovetedMobs.MODID, "entities/herps/blindworm"));
+		LootTableList.register(new ResourceLocation(CovetedMobs.MODID, "entities/european_newt_one/newt"));
+		LootTableList.register(new ResourceLocation(CovetedMobs.MODID, "entities/blindworm/blindworm"));
 	}
 }
