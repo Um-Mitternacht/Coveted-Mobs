@@ -65,5 +65,6 @@ public class CovetedMobs {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRendersInit();
+		int id = -1;
 	}
 }
