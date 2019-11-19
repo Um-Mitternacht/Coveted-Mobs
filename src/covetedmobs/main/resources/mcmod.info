@@ -1,18 +1,26 @@
 [
-{
-  "modid": "covetedmobs",
-  "name": "Coveted Mobs",
-  "description": "A mod specializing in mobs",
-  "version":"${version}",
-  "mcversion": "${mcversion}",
-  "url": "???",
-  "updateUrl": "",
-  "authorList": ["Sunconure11"],
-  "credits": "To all contributors of the mod.",
-  "logoFile": "",
-  "screenshots": [],
-  "requiredMods": ["forge", "baubles"],
-  "dependencies": ["forge", "baubles"],
-  "useDependencyInformation": true
-}
+  {
+	"modid": "covetedmobs",
+	"name": "Coveted Mobs",
+	"description": "A mod specializing in mobs",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+	"url": "???",
+	"updateUrl": "",
+	"authorList": [
+	  "Sunconure11"
+	],
+	"credits": "To all contributors of the mod.",
+	"logoFile": "",
+	"screenshots": [],
+	"requiredMods": [
+	  "forge",
+	  "baubles"
+	],
+	"dependencies": [
+	  "forge",
+	  "baubles"
+	],
+	"useDependencyInformation": true
+  }
 ]
