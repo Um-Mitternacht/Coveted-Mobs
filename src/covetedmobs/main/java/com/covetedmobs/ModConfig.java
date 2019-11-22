@@ -38,7 +38,7 @@ public class ModConfig {
 		
 		public static class Newt {
 			@Config.Comment("The list of BiomeDictionary types that the newt will spawn in.")
-			public String[] newtBiomes = {BiomeDictionary.Type.FOREST.getName(), BiomeDictionary.Type.DENSE.getName()};
+			public String[] newtBiomes = {BiomeDictionary.Type.SWAMP.getName(), BiomeDictionary.Type.WET.getName()};
 			
 			@Config.Comment("The weight chance for newts to spawn.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
