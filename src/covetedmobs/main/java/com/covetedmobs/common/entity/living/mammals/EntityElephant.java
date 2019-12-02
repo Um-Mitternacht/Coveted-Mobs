@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class EntityElephant extends ModEntityTameable {
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE);
-		setSize(1, 0.3f);
+		setSize(2.7f, 2.7f);
 	}
 	
 	@Override
