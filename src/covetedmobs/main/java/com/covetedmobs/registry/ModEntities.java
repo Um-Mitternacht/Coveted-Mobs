@@ -8,6 +8,7 @@ import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.ModConfig;
 import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityNewt;
+import com.covetedmobs.common.entity.living.mammals.EntityElephant;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
@@ -28,6 +29,7 @@ public class ModEntities {
 	
 	public static final EntityEntry blindworm = createEntityEntry(EntityBlindworm.class, "blindworm", 0x954535, 0xEDC9AF, EnumCreatureType.CREATURE, ModConfig.mobSpawns.blindworm.blindwormWeight, ModConfig.mobSpawns.blindworm.blindwormMin, ModConfig.mobSpawns.blindworm.blindwormMax, Arrays.asList(ModConfig.mobSpawns.blindworm.blindwormBiomes));
 	public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x954535, 0xEDC9AF, EnumCreatureType.CREATURE, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
+	public static final EntityEntry elephant = createEntityEntry(EntityElephant.class, "elephant", 0xC0C0C0, 0x555555, EnumCreatureType.CREATURE, ModConfig.mobSpawns.elephant.elephantWeight, ModConfig.mobSpawns.elephant.elephantMin, ModConfig.mobSpawns.elephant.elephantMax, Arrays.asList(ModConfig.mobSpawns.elephant.elephantBiomes));
 	
 	private static EntityEntry createEntityEntry(Class<? extends Entity> clazz, String name) {
 		return EntityEntryBuilder.create().entity(clazz).id(new ResourceLocation(CovetedMobs.MODID, name), entity_id++).name(CovetedMobs.MODID + "." + name).tracker(128, 1, true).build();
