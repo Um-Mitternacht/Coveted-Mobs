@@ -28,7 +28,7 @@ public class EntityElephant extends ModEntityTameable {
 	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
-		setSize(2.7f, 2.7f);
+		setSize(4.0f, 4.0f);
 	}
 	
 	@Override
