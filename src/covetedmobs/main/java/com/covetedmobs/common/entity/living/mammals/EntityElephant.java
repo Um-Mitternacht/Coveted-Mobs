@@ -18,7 +18,7 @@ public class EntityElephant extends ModEntityTameable {
 	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.MELON;
+		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE;
 	}
 	
 	@Override
