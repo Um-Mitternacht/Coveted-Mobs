@@ -1,5 +1,6 @@
 package com.covetedmobs.client.model.entity.mammals;
 
+import com.covetedmobs.common.entity.living.mammals.EntityElephant;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -337,6 +338,14 @@ public class ModelElephant extends ModelBase {
 		}
 		else {
 			this.neck.rotateAngleX = headPitch * 0.017453292F;
+		}
+		
+		if (entity instanceof EntityElephant) {
+			EntityElephant elephant = (EntityElephant) entity;
+			float eatTime = elephant.getEatTime();
+			if(eatTime > 0) {
+			
+			}
 		}
 		
 		float swingModifier = 0.6f;

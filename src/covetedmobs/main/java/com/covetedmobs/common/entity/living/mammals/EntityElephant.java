@@ -3,6 +3,7 @@ package com.covetedmobs.common.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
 import com.google.common.base.Optional;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
@@ -41,23 +42,30 @@ public class EntityElephant extends ModEntityTameable {
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4);
 	}
 	
-	@Nullable
-	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-		livingdata = super.onInitialSpawn(difficulty, livingdata);
-		
-		if (this.rand.nextInt(5) == 0) {
-			this.setGrowingAge(-24000);
-		}
-		
-		return livingdata;
-	}
-	
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 		
 		if (this.getOwnerUniqueId() != null) {
 			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
 		}
+	}
+	
+	public boolean canEatGrass()
+	{
+		return true;
+	}
+	
+	@Override
+	public void eatGrassBonus() {
+		super.eatGrassBonus();
+		this.addGrowth(60);
+	}
+	
+	private void elephantGraze() {}
+	
+	@Override
+	public boolean canBeSteered() {
+		return this.getControllingPassenger() instanceof EntityLivingBase;
 	}
 	
 	@Override
