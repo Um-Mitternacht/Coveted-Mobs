@@ -347,7 +347,7 @@ public class ModelElephant extends ModelBase {
 				this.neck.rotateAngleX = (float) Math.toRadians(60F) - 0.31869712141416456F;
 			}
 			else {
-				this.neck.rotateAngleX = headPitch * 0.017453292F;
+				this.trunk00.rotateAngleX = headPitch * 0.017453292F;
 			}
 		}
 		
