@@ -57,7 +57,7 @@ public class EntityElephant extends ModEntityTameable {
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(1.4);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.4);
-		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4);
+		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2);
 	}
 	
 	public void writeEntityToNBT(NBTTagCompound compound) {
