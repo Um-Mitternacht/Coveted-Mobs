@@ -1,7 +1,7 @@
 package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
-import com.covetedmobs.common.entity.util.ModEntityTameable;
+import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
 import com.google.common.base.Optional;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,7 +21,7 @@ import java.util.UUID;
 /**
  * Created by Joseph on 12/1/2019.
  */
-public class EntityElephant extends ModEntityTameable {
+public class EntityElephant extends ModEntityTameableGrazer {
 	
 	private int grazeTimer;
 	private EntityAIEatGrass entityAIEatGrass;
