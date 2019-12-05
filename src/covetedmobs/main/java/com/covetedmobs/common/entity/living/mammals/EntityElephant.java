@@ -96,13 +96,19 @@ public class EntityElephant extends ModEntityTameable {
 		super.onLivingUpdate();
 	}
 	
-	public int getGrazeTime() {
-		return grazeTimer;
+	public void eatGrassBonus() {
+		if (this.isChild()) {
+			this.addGrowth(60);
+		}
 	}
 	
 	@Override
 	public boolean canBeSteered() {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
+	}
+	
+	public int getGrazeTime() {
+		return grazeTimer;
 	}
 	
 	public boolean canBeSaddled() {
