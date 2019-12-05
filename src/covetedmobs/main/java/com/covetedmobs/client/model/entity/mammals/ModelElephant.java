@@ -340,11 +340,11 @@ public class ModelElephant extends ModelBase {
 		}
 		
 		float swingModifier = 0.6f;
-			this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
-			this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
-			this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
-			this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
-		}
+		this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
+		this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
+		this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
+		this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
+	}
 	
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts

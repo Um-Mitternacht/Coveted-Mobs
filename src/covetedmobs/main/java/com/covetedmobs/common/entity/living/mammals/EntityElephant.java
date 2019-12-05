@@ -2,10 +2,17 @@ package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
+import com.google.common.base.Optional;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.UUID;
 
 /**
  * Created by Joseph on 12/1/2019.
@@ -18,11 +25,44 @@ public class EntityElephant extends ModEntityTameable {
 	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE;
+		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT;
+	}
+	
+	@Nullable
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+		livingdata = super.onInitialSpawn(difficulty, livingdata);
+		
+		if (this.rand.nextInt(5) == 0) {
+			this.setGrowingAge(-24000);
+		}
+		
+		return livingdata;
+	}
+	
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		
+		if (this.getOwnerUniqueId() != null) {
+			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
+		}
 	}
 	
 	@Override
 	protected int getSkinTypes() {
 		return 2;
 	}
+	
+	public boolean canBeSaddled() {
+		return true;
+	}
+	
+	@Nullable
+	public UUID getOwnerUniqueId() {
+		return (UUID) ((Optional) this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
+	}
+	
+	public void setOwnerUniqueId(@Nullable UUID uniqueId) {
+		this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(uniqueId));
+	}
+	
 }
