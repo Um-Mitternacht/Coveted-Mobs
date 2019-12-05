@@ -4,14 +4,16 @@ import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
 import com.google.common.base.Optional;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -20,6 +22,10 @@ import java.util.UUID;
  * Created by Joseph on 12/1/2019.
  */
 public class EntityElephant extends ModEntityTameable {
+	
+	private int grazeTimer;
+	private EntityAIEatGrass entityAIEatGrass;
+	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(2.7f, 2.7f);
@@ -28,6 +34,18 @@ public class EntityElephant extends ModEntityTameable {
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.MELON || stack.getItem() == Items.APPLE;
+	}
+	
+	protected void initEntityAI() {
+		this.entityAIEatGrass = new EntityAIEatGrass(this);
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
+		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
+		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
+		this.tasks.addTask(5, this.entityAIEatGrass);
+		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
+		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		this.tasks.addTask(8, new EntityAILookIdle(this));
 	}
 	
 	@Override
@@ -50,27 +68,41 @@ public class EntityElephant extends ModEntityTameable {
 		}
 	}
 	
-	public boolean canEatGrass()
-	{
-		return true;
-	}
-	
 	@Override
-	public void eatGrassBonus() {
-		super.eatGrassBonus();
-		this.addGrowth(60);
+	protected int getSkinTypes() {
+		return 2;
 	}
 	
-	private void elephantGraze() {}
+	@SideOnly(Side.CLIENT)
+	public void handleStatusUpdate(byte id) {
+		if (id == 10) {
+			this.grazeTimer = 40;
+		}
+		else {
+			super.handleStatusUpdate(id);
+		}
+	}
+	
+	protected void updateAITasks() {
+		this.grazeTimer = this.entityAIEatGrass.getEatingGrassTimer();
+		super.updateAITasks();
+	}
+	
+	public void onLivingUpdate() {
+		if (this.world.isRemote) {
+			this.grazeTimer = Math.max(0, this.grazeTimer - 1);
+		}
+		
+		super.onLivingUpdate();
+	}
+	
+	public int getGrazeTime() {
+		return grazeTimer;
+	}
 	
 	@Override
 	public boolean canBeSteered() {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
-	}
-	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
 	}
 	
 	public boolean canBeSaddled() {
