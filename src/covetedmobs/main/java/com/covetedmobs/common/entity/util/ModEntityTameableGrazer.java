@@ -28,8 +28,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Set;
@@ -37,15 +35,13 @@ import java.util.Set;
 @SuppressWarnings({"NullableProblems", "EntityConstructor", "ConstantConditions", "WeakerAccess"})
 public abstract class ModEntityTameableGrazer extends EntityTameable {
 	public static final DataParameter<Integer> SKIN = EntityDataManager.createKey(ModEntityTameableGrazer.class, DataSerializers.VARINT);
-	public final int taskPriority;
-	private final Set<Item> tameItems;
-	private final ResourceLocation lootTableLocation;
-	public int eatTimer;
-	private EntityAIEatGrassCustom eatTask = null;
 	
-	protected ModEntityTameableGrazer(World world, int taskPriority, ResourceLocation lootTableLocation, Item... tameItems) {
+	private final Set<Item> tameItems;
+	
+	private final ResourceLocation lootTableLocation;
+	
+	protected ModEntityTameableGrazer(World world, ResourceLocation lootTableLocation, Item... tameItems) {
 		super(world);
-		this.taskPriority = taskPriority;
 		this.tameItems = Sets.newHashSet(tameItems);
 		this.lootTableLocation = lootTableLocation;
 	}
@@ -55,91 +51,6 @@ public abstract class ModEntityTameableGrazer extends EntityTameable {
 		EntityAgeable entity = (EntityAgeable) EntityRegistry.getEntry(getClass()).newInstance(world);
 		entity.getDataManager().set(SKIN, rand.nextBoolean() ? dataManager.get(SKIN) : other.getDataManager().get(SKIN));
 		return entity;
-	}
-	
-	@Override
-	protected void initEntityAI() {
-		aiSit = new EntityAISit(this);
-		super.initEntityAI();
-		this.tasks.addTask(taskPriority, eatTask = this.provideEatTask());
-	}
-	
-	@Override
-	protected void applyEntityAttributes() {
-		super.applyEntityAttributes();
-		boostHealth(isTamed());
-	}
-	
-	@Override
-	public void eatGrassBonus() {
-		super.eatGrassBonus();
-		this.addGrowth(60);
-	}
-	
-	@Override
-	protected ResourceLocation getLootTable() {
-		return lootTableLocation;
-	}
-	
-	@Override
-	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data) {
-		dataManager.set(SKIN, rand.nextInt(getSkinTypes()));
-		return super.onInitialSpawn(difficulty, data);
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		dataManager.register(SKIN, 0);
-	}
-	
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tag) {
-		tag.setInteger("skin", dataManager.get(SKIN));
-		dataManager.setDirty(SKIN);
-		super.writeEntityToNBT(tag);
-	}
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound tag) {
-		dataManager.set(SKIN, tag.getInteger("skin"));
-		super.readEntityFromNBT(tag);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void handleStatusUpdate(byte id) {
-		if (id == 10) {
-			this.eatTimer = 40;
-		}
-		else {
-			super.handleStatusUpdate(id);
-		}
-	}
-	
-	@Override
-	public void setTamed(boolean tamed) {
-		super.setTamed(tamed);
-		boostHealth(tamed);
-	}
-	
-	public int getEatTime() {
-		return eatTimer;
-	}
-	
-	@Override
-	public void updateAITasks() {
-		if (this.eatTask != null) {
-			this.eatTimer = this.eatTask.getEatingGrassTimer();
-		}
-		super.updateAITasks();
-	}
-	
-	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
-		if (this.world.isRemote) {
-			this.eatTimer = Math.max(0, this.eatTimer - 1);
-		}
 	}
 	
 	@Override
@@ -189,8 +100,51 @@ public abstract class ModEntityTameableGrazer extends EntityTameable {
 		return isTamed() && isInLove() && ((EntityTameable) other).isTamed() && other.isInLove() && !((EntityTameable) other).isSitting();
 	}
 	
-	protected EntityAIEatGrassCustom provideEatTask() {
-		return new EntityAIEatGrassCustom(this, 50, 500);
+	@Override
+	protected void initEntityAI() {
+		aiSit = new EntityAISit(this);
+	}
+	
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		boostHealth(isTamed());
+	}
+	
+	@Override
+	protected ResourceLocation getLootTable() {
+		return lootTableLocation;
+	}
+	
+	@Override
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data) {
+		dataManager.set(SKIN, rand.nextInt(getSkinTypes()));
+		return super.onInitialSpawn(difficulty, data);
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		dataManager.register(SKIN, 0);
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag) {
+		tag.setInteger("skin", dataManager.get(SKIN));
+		dataManager.setDirty(SKIN);
+		super.writeEntityToNBT(tag);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag) {
+		dataManager.set(SKIN, tag.getInteger("skin"));
+		super.readEntityFromNBT(tag);
+	}
+	
+	@Override
+	public void setTamed(boolean tamed) {
+		super.setTamed(tamed);
+		boostHealth(tamed);
 	}
 	
 	protected int getSkinTypes() {
