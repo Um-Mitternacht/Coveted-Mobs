@@ -73,7 +73,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	}
 	
 	protected EntityAIEatGrassCustom provideEatTask() {
-		return new EntityAIEatGrassCustom(this, 50, 500, eater -> {
+		return new EntityAIEatGrassCustom(this, 1, 1, eater -> {
 			EnumFacing facing = eater.getHorizontalFacing();
 			return eater.getPosition().offset(facing).offset(facing);
 		});
