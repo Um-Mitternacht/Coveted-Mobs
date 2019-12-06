@@ -1,7 +1,6 @@
 package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
-import com.covetedmobs.common.entity.util.EntityAIEatGrassCustom;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
 import com.google.common.base.Optional;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,9 +10,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -23,6 +23,7 @@ import java.util.UUID;
  */
 public class EntityElephant extends ModEntityTameableGrazer {
 	
+	private int grazeTimer;
 	private EntityAIEatGrass entityAIEatGrass;
 	
 	protected EntityElephant(World world) {
@@ -36,6 +37,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
+		this.tasks.addTask(5, this.entityAIEatGrass);
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
@@ -67,16 +69,27 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public void handleStatusUpdate(byte id) {
+		if (id == 10) {
+			this.grazeTimer = 40;
+		}
+		else {
+			super.handleStatusUpdate(id);
+		}
+	}
+	
+	public void onLivingUpdate() {
+		if (this.world.isRemote) {
+			this.grazeTimer = Math.max(0, this.grazeTimer - 1);
+		}
+		
+		super.onLivingUpdate();
+	}
+	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.MELON || stack.getItem() == Items.APPLE;
-	}
-	
-	protected EntityAIEatGrassCustom provideEatTask() {
-		return new EntityAIEatGrassCustom(this, 1, 1, eater -> {
-			EnumFacing facing = eater.getHorizontalFacing();
-			return eater.getPosition().offset(facing).offset(facing);
-		});
 	}
 	
 	@Override
@@ -87,6 +100,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	@Override
 	public boolean canBeSteered() {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
+	}
+	
+	public int getGrazeTime() {
+		return grazeTimer;
 	}
 	
 	public boolean canBeSaddled() {
