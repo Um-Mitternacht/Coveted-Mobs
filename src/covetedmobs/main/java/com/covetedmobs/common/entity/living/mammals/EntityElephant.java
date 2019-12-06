@@ -27,13 +27,8 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	private EntityAIEatGrass entityAIEatGrass;
 	
 	protected EntityElephant(World world) {
-		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
+		super(world, 5, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(4.0f, 4.0f);
-	}
-	
-	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.MELON || stack.getItem() == Items.APPLE;
 	}
 	
 	protected void initEntityAI() {
@@ -60,17 +55,18 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1);
 	}
 	
+	public void eatGrassBonus() {
+		if (this.isChild()) {
+			this.addGrowth(60);
+		}
+	}
+	
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 		
 		if (this.getOwnerUniqueId() != null) {
 			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
 		}
-	}
-	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -83,11 +79,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
-	protected void updateAITasks() {
-		this.grazeTimer = this.entityAIEatGrass.getEatingGrassTimer();
-		super.updateAITasks();
-	}
-	
 	public void onLivingUpdate() {
 		if (this.world.isRemote) {
 			this.grazeTimer = Math.max(0, this.grazeTimer - 1);
@@ -96,10 +87,14 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		super.onLivingUpdate();
 	}
 	
-	public void eatGrassBonus() {
-		if (this.isChild()) {
-			this.addGrowth(60);
-		}
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.MELON || stack.getItem() == Items.APPLE;
+	}
+	
+	@Override
+	protected int getSkinTypes() {
+		return 2;
 	}
 	
 	@Override
