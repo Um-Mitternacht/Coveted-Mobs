@@ -56,7 +56,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(1.4);
-		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.4);
+		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.7);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1);
 	}
 	
