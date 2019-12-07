@@ -10,6 +10,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,8 +26,7 @@ import java.util.UUID;
  */
 public class EntityElephant extends ModEntityTameableGrazer {
 	
-	private int grazeTimer;
-	private EntityAIEatGrass entityAIEatGrass;
+	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
@@ -37,12 +39,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	}
 	
 	protected void initEntityAI() {
-		this.entityAIEatGrass = new EntityAIEatGrass(this);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
-		this.tasks.addTask(5, this.entityAIEatGrass);
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
@@ -73,42 +73,38 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return 2;
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public void handleStatusUpdate(byte id) {
-		if (id == 10) {
-			this.grazeTimer = 40;
-		}
-		else {
-			super.handleStatusUpdate(id);
-		}
+	private int getNewGraze() {
+		return this.rand.nextInt(600) + 30;
 	}
 	
-	protected void updateAITasks() {
-		this.grazeTimer = this.entityAIEatGrass.getEatingGrassTimer();
-		super.updateAITasks();
-	}
-	
+	@Override
 	public void onLivingUpdate() {
-		if (this.world.isRemote) {
-			this.grazeTimer = Math.max(0, this.grazeTimer - 1);
+		super.onLivingUpdate();
+		if (!onGround && motionY <= 0) motionY *= 0.6;
+		
+		if (!this.onGround || this.getMoveHelper().isUpdating()) {
+			if (this.getGrazeTime() <= 61) {
+				this.setGrazeTime(80);
+			}
 		}
 		
-		super.onLivingUpdate();
+		if (!this.world.isRemote && this.setGrazeTime(this.getGrazeTime() - 1) <= 0) {
+			this.setGrazeTime(this.getNewGraze());
+		}
 	}
 	
-	public void eatGrassBonus() {
-		if (this.isChild()) {
-			this.addGrowth(60);
-		}
+	public int getGrazeTime() {
+		return this.dataManager.get(GRAZE_TIME).intValue();
+	}
+	
+	public int setGrazeTime(int time) {
+		this.dataManager.set(GRAZE_TIME, Integer.valueOf(time));
+		return time;
 	}
 	
 	@Override
 	public boolean canBeSteered() {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
-	}
-	
-	public int getGrazeTime() {
-		return grazeTimer;
 	}
 	
 	public boolean canBeSaddled() {
