@@ -31,6 +31,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(4.0f, 4.0f);
+		this.setGrazeTime(this.getNewGraze());
 	}
 	
 	@Override
@@ -66,6 +67,12 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		if (this.getOwnerUniqueId() != null) {
 			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
 		}
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
 	@Override
