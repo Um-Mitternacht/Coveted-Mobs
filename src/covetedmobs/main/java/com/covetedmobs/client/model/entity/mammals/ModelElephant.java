@@ -343,7 +343,7 @@ public class ModelElephant extends ModelBase {
 		if (entity instanceof EntityElephant) {
 			EntityElephant elephant = (EntityElephant) entity;
 			float grazeTime = elephant.getGrazeTime();
-			if (grazeTime > 0) {
+			if (grazeTime <= 60) {
 				this.neck.rotateAngleX = (float) Math.toRadians(60F) - 0.31869712141416456F;
 			}
 			else {
