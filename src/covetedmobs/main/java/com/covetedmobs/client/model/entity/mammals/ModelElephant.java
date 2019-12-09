@@ -331,6 +331,7 @@ public class ModelElephant extends ModelBase {
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
 		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
+		float swingModifier = 0.6f;
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
 		
 		if (flag) {
@@ -349,18 +350,33 @@ public class ModelElephant extends ModelBase {
 			else {
 				this.trunk00.rotateAngleX = headPitch * 0.017453292F;
 			}
+			
+			if (elephant.isSitting()) {
+				this.butt.offsetY = 0.50f;
+				this.lArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
+				this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
+				this.lLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
+				this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
+			}
+			else {
+				this.butt.offsetY = 0f;
+				this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
+				this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
+				this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
+				this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
+			}
+			
+			this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
+			this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
+			this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
+			this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 		}
-		
-		float swingModifier = 0.6f;
-		this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
-		this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
-		this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
-		this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 	}
 	
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */
+	
 	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;

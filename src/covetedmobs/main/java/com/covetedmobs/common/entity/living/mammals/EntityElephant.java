@@ -39,8 +39,11 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return stack.getItem() == Items.MELON || stack.getItem() == Items.PUMPKIN_PIE || stack.getItem() == Items.GOLDEN_APPLE || stack.getItem() == Items.SPECKLED_MELON || stack.getItem() == Items.GOLDEN_CARROT || stack.getItem() == Items.MELON || stack.getItem() == Items.APPLE;
 	}
 	
+	@Override
 	protected void initEntityAI() {
+		super.initEntityAI();
 		this.tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(1, aiSit);
 		this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
 		this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
