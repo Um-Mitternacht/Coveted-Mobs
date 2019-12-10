@@ -333,6 +333,10 @@ public class ModelElephant extends ModelBase {
 		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
 		float swingModifier = 0.6f;
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+		this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
+		this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
+		this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
+		this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 		
 		if (flag) {
 			this.neck.rotateAngleX = -((float) Math.PI / 4F);
