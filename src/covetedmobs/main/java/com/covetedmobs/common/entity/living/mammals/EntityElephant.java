@@ -118,7 +118,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		if (!onGround && motionY <= 0) motionY *= 0.6;
 		
 		if (!this.onGround || this.getMoveHelper().isUpdating()) {
-			if (this.getGrazeTime() <= 61) {
+			if (this.getGrazeTime() <= 81) {
 				this.setGrazeTime(80);
 			}
 		}
