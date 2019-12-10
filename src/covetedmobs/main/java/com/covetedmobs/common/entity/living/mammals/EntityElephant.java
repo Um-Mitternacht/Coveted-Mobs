@@ -109,7 +109,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	}
 	
 	private int getNewGraze() {
-		return this.rand.nextInt(2000) + 60;
+		return this.rand.nextInt(2000) + 80;
 	}
 	
 	@Override
