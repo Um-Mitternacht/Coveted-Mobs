@@ -3,20 +3,21 @@ package com.covetedmobs.common.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
 import com.google.common.base.Optional;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -32,6 +33,29 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(4.0f, 4.0f);
 		this.setGrazeTime(this.getNewGraze());
+	}
+	
+	@Override
+	protected void collideWithNearbyEntities() {
+	}
+	
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (this.isEntityInvulnerable(source)) {
+			return false;
+		}
+		else {
+			Entity entity = source.getTrueSource();
+			
+			if (this.aiSit != null) {
+				this.aiSit.setSitting(false);
+			}
+			
+			if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow)) {
+				amount = (amount + 1.0F) / 2.0F;
+			}
+			
+			return super.attackEntityFrom(source, amount);
+		}
 	}
 	
 	@Override
@@ -62,6 +86,13 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(1.4);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.7);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1);
+		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9D);
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
 	public void writeEntityToNBT(NBTTagCompound compound) {
@@ -70,12 +101,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		if (this.getOwnerUniqueId() != null) {
 			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
 		}
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
 	@Override

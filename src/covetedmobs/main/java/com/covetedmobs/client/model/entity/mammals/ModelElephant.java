@@ -352,24 +352,23 @@ public class ModelElephant extends ModelBase {
 			}
 			
 			if (elephant.isSitting()) {
-				this.butt.offsetY = 0.50f;
-				this.lArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
-				this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
-				this.lLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
-				this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F);
+				this.butt.offsetY = 0.59f;
+				this.lArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.rArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.lLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.rLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
 			}
 			else {
 				this.butt.offsetY = 0f;
+				this.lArm1.rotateAngleZ = 0f;
+				this.rArm1.rotateAngleZ = 0f;
+				this.rLeg1.rotateAngleZ = 0f;
+				this.lLeg1.rotateAngleZ = 0f;
 				this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
 				this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
 				this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
 				this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 			}
-			
-			this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
-			this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
-			this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
-			this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 		}
 	}
 	
