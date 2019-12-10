@@ -353,10 +353,10 @@ public class ModelElephant extends ModelBase {
 			
 			if (elephant.isSitting()) {
 				this.butt.offsetY = 0.59f;
-				this.lArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.6F);
-				this.rArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.6F);
-				this.lLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.6F);
-				this.rLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.6F);
+				this.lArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.rArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.lLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				this.rLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
 			}
 			else {
 				this.butt.offsetY = 0f;
