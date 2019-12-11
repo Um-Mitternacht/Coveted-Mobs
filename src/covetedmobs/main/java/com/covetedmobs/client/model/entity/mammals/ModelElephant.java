@@ -332,6 +332,7 @@ public class ModelElephant extends ModelBase {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
 		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
 		float swingModifier = 0.6f;
+		boolean sit = false;
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
 		
 		if (flag) {
@@ -352,11 +353,12 @@ public class ModelElephant extends ModelBase {
 			}
 			
 			if (elephant.isSitting()) {
-				this.butt.offsetY = 0.59f;
-				this.lArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
-				this.rArm1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
-				this.lLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
-				this.rLeg1.rotateAngleZ = MathHelper.cos(limbSwing * -0.8F);
+				sit = true;
+				this.butt.offsetY = 0.60f;
+				this.setRotateAngle(lArm1, -1f, 0f, 0f);
+				this.setRotateAngle(rArm1, -1f, 0f, 0f);
+				this.setRotateAngle(lLeg1, 0.3f, 0f, -1.1f);
+				this.setRotateAngle(rLeg1, 0.3f, 0f, -1.1f);
 			}
 			else {
 				this.butt.offsetY = 0f;
@@ -369,6 +371,17 @@ public class ModelElephant extends ModelBase {
 				this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
 				this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 			}
+		}
+		if (!sit) {
+			this.butt.offsetY = 0f;
+			this.lArm1.rotateAngleZ = 0f;
+			this.rArm1.rotateAngleZ = 0f;
+			this.rLeg1.rotateAngleZ = 0f;
+			this.lLeg1.rotateAngleZ = 0f;
+			this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.20F;
+			this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.20f;
+			this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount + 0f;
+			this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount + 0f;
 		}
 	}
 	
