@@ -336,6 +336,7 @@ public class ModelElephant extends ModelBase {
 		boolean flag1 = !flag && entity.isElephantSaddled();
 		boolean flag2 = !flag && entity.isElephantSworded();
 		boolean flag3 = !flag && entity.isElephantChested();
+		boolean flag4 = !flag && entity.isElephantBlanketed();
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
 		
 		if (flag) {
