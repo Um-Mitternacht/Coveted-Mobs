@@ -142,6 +142,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
 	}
 	
+	public void setElephantSaddled() {
+	
+	}
+	
 	public boolean canBeSaddled() {
 		return true;
 	}
