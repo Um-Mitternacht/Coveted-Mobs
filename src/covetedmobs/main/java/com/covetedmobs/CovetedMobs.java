@@ -26,6 +26,9 @@ package com.covetedmobs;
 import com.covetedmobs.client.handler.ClientHandler;
 import com.covetedmobs.common.handler.GuiHandler;
 import com.covetedmobs.proxy.ServerProxy;
+import com.covetedmobs.registry.ModObjects;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -40,6 +43,13 @@ import org.apache.logging.log4j.Logger;
 @SuppressWarnings({"ConstantConditions", "unused", "WeakerAccess"})
 @Mod(modid = CovetedMobs.MODID, name = CovetedMobs.NAME, version = CovetedMobs.VERSION, guiFactory = CovetedMobs.GUI_FACTORY)
 public class CovetedMobs {
+	
+	public static final CreativeTabs tab = new CreativeTabs(CovetedMobs.MODID) {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(ModObjects.iron_tusk_sword);
+		}
+	};
 	
 	public static final String MODID = "covetedmobs", NAME = "Coveted Mobs", VERSION = "1.0.0", GUI_FACTORY = "com.covetedmobs.client.gui.GuiFactory";
 	public static final Logger logger = LogManager.getLogger(NAME);
