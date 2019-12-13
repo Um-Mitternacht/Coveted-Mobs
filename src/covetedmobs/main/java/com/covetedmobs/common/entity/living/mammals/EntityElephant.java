@@ -2,6 +2,7 @@ package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
+import com.covetedmobs.registry.ModObjects;
 import com.google.common.base.Optional;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,7 +10,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -110,6 +113,16 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
+	}
+	
+	public boolean wearsArmor()
+	{
+		return true;
+	}
+	
+	public boolean isArmor(ItemStack stack)
+	{
+		return stack.getItem() == ModObjects.diamond_tusk_sword || stack.getItem() == ModObjects.iron_tusk_sword || stack.getItem() == ModObjects.gold_tusk_sword;
 	}
 	
 	@Override
