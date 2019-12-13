@@ -44,14 +44,13 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = CovetedMobs.MODID, name = CovetedMobs.NAME, version = CovetedMobs.VERSION, guiFactory = CovetedMobs.GUI_FACTORY)
 public class CovetedMobs {
 	
+	public static final String MODID = "covetedmobs", NAME = "Coveted Mobs", VERSION = "1.0.0", GUI_FACTORY = "com.covetedmobs.client.gui.GuiFactory";
 	public static final CreativeTabs tab = new CreativeTabs(CovetedMobs.MODID) {
 		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(ModObjects.iron_tusk_sword);
 		}
 	};
-	
-	public static final String MODID = "covetedmobs", NAME = "Coveted Mobs", VERSION = "1.0.0", GUI_FACTORY = "com.covetedmobs.client.gui.GuiFactory";
 	public static final Logger logger = LogManager.getLogger(NAME);
 	@SidedProxy(serverSide = "com.covetedmobs.proxy.ServerProxy", clientSide = "com.covetedmobs.proxy.ClientProxy")
 	public static ServerProxy proxy;

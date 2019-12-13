@@ -4,6 +4,7 @@ import com.covetedmobs.CovetedMobs;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -48,6 +49,19 @@ public class ModRegistries {
 	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+	
+	}
+	
+	@SubscribeEvent
+	public static void registerPotions(RegistryEvent.Register<Potion> event) {
+		try {
+			for (Field f : ModPotions.class.getFields()) {
+				Object obj = f.get(null);
+				if (obj instanceof Potion) event.getRegistry().register((Potion) obj);
+			}
+		}
+		catch (Exception ignored) {}
+	}
 	
 	@SubscribeEvent
 	public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
