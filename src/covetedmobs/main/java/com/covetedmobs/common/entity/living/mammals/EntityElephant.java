@@ -2,7 +2,6 @@ package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
-import com.covetedmobs.registry.ModObjects;
 import com.google.common.base.Optional;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,6 +33,14 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(4.0f, 4.0f);
 		this.setGrazeTime(this.getNewGraze());
+	}
+	
+	public boolean getTuskSword() {
+		return false;
+	}
+	
+	public boolean hasTuskSword() {
+		return this.getTuskSword();
 	}
 	
 	@Override
@@ -111,18 +118,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
-	}
-	
-	public boolean isTuskSword(ItemStack stack) {
-		return stack.getItem() == ModObjects.diamond_tusk_sword || stack.getItem() == ModObjects.iron_tusk_sword || stack.getItem() == ModObjects.gold_tusk_sword;
-	}
-	
-	public boolean isHowdah(ItemStack stack) {
-		return stack.getItem() == ModObjects.howdah;
-	}
-	
-	public boolean isGarment(ItemStack stack) {
-		return stack.getItem() == ModObjects.garment;
 	}
 	
 	@Override
