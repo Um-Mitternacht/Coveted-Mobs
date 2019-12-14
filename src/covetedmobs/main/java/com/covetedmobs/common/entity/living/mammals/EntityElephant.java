@@ -113,10 +113,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return this.rand.nextInt(2000) + 80;
 	}
 	
-	public boolean wearsArmor() {
-		return true;
-	}
-	
 	public boolean isArmor(ItemStack stack) {
 		return stack.getItem() == ModObjects.diamond_tusk_sword || stack.getItem() == ModObjects.iron_tusk_sword || stack.getItem() == ModObjects.gold_tusk_sword;
 	}
@@ -149,14 +145,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	@Override
 	public boolean canBeSteered() {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
-	}
-	
-	public void setElephantSaddled() {
-	
-	}
-	
-	public boolean canBeSaddled() {
-		return true;
 	}
 	
 	@Nullable
