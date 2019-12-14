@@ -113,8 +113,16 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return this.rand.nextInt(2000) + 80;
 	}
 	
-	public boolean isArmor(ItemStack stack) {
+	public boolean isTuskSword(ItemStack stack) {
 		return stack.getItem() == ModObjects.diamond_tusk_sword || stack.getItem() == ModObjects.iron_tusk_sword || stack.getItem() == ModObjects.gold_tusk_sword;
+	}
+	
+	public boolean isHowdah(ItemStack stack) {
+		return stack.getItem() == ModObjects.howdah;
+	}
+	
+	public boolean isGarment(ItemStack stack) {
+		return stack.getItem() == ModObjects.garment;
 	}
 	
 	@Override
