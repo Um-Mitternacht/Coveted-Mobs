@@ -2,6 +2,7 @@ package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
+import com.covetedmobs.registry.ModObjects;
 import com.google.common.base.Optional;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +28,7 @@ import java.util.UUID;
  */
 public class EntityElephant extends ModEntityTameableGrazer {
 	
+	private static final DataParameter<Integer> TUSK_SWORDED = EntityDataManager.createKey(EntityElephant.class, DataSerializers.VARINT);
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	
 	protected EntityElephant(World world) {
@@ -35,12 +37,21 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.setGrazeTime(this.getNewGraze());
 	}
 	
-	public boolean getTuskSword() {
-		return false;
+	public int getTuskSword() {
+		return Integer.valueOf(this.dataManager.get(TUSK_SWORDED).intValue());
 	}
 	
-	public boolean hasTuskSword() {
-		return this.getTuskSword();
+	public int getIntFromArmor(ItemStack stack) {
+		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.iron_tusk_sword) {
+			return 1;
+		}
+		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.gold_tusk_sword) {
+			return 2;
+		}
+		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.diamond_tusk_sword) {
+			return 3;
+		}
+		return 0;
 	}
 	
 	@Override
@@ -105,6 +116,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
+		compound.setInteger("Tusksworded", this.getTuskSword());
 		
 		if (this.getOwnerUniqueId() != null) {
 			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());

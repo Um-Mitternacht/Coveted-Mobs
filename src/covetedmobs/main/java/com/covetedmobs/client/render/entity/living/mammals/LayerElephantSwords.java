@@ -13,7 +13,7 @@ public class LayerElephantSwords implements LayerRenderer<EntityElephant> {
 	
 	@Override
 	public void doRenderLayer(EntityElephant entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		if (entitylivingbaseIn.hasTuskSword()) {
+		if (entitylivingbaseIn.getTuskSword() != 0) {
 		
 		}
 	}
