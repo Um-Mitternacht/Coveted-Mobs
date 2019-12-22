@@ -25,6 +25,6 @@ public class GuiHandler implements IGuiHandler {
 	}
 	
 	public enum ModGui {
-		STANDARD_ELEPHANT
+		ELEPHANT
 	}
 }
