@@ -30,7 +30,7 @@ public class RenderBlindworm extends RenderLiving<EntityBlindworm> {
 	@Override
 	protected void preRenderCallback(EntityBlindworm entity, float partialTickTime) {
 		super.preRenderCallback(entity, partialTickTime);
-		if (entity.isChild()) GlStateManager.scale(0.4, 0.4, 0.4);
-		else GlStateManager.scale(0.6, 0.6, 0.6);
+		if (entity.isChild()) GlStateManager.scale(0.3, 0.3, 0.3);
+		else GlStateManager.scale(0.4, 0.4, 0.4);
 	}
 }

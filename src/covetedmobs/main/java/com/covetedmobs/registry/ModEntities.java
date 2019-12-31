@@ -27,8 +27,8 @@ import java.util.Set;
 public class ModEntities {
 	public static int entity_id = 0;
 	
-	public static final EntityEntry blindworm = createEntityEntry(EntityBlindworm.class, "blindworm", 0x954535, 0xEDC9AF, EnumCreatureType.CREATURE, ModConfig.mobSpawns.blindworm.blindwormWeight, ModConfig.mobSpawns.blindworm.blindwormMin, ModConfig.mobSpawns.blindworm.blindwormMax, Arrays.asList(ModConfig.mobSpawns.blindworm.blindwormBiomes));
-	public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x555D50, 0xFF8C00, EnumCreatureType.CREATURE, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
+	public static final EntityEntry blindworm = createEntityEntry(EntityBlindworm.class, "blindworm", 0x954535, 0xEDC9AF, EnumCreatureType.AMBIENT, ModConfig.mobSpawns.blindworm.blindwormWeight, ModConfig.mobSpawns.blindworm.blindwormMin, ModConfig.mobSpawns.blindworm.blindwormMax, Arrays.asList(ModConfig.mobSpawns.blindworm.blindwormBiomes));
+	public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x555D50, 0xFF8C00, EnumCreatureType.AMBIENT, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
 	public static final EntityEntry elephant = createEntityEntry(EntityElephant.class, "elephant", 0xC0C0C0, 0x555555, EnumCreatureType.CREATURE, ModConfig.mobSpawns.elephant.elephantWeight, ModConfig.mobSpawns.elephant.elephantMin, ModConfig.mobSpawns.elephant.elephantMax, Arrays.asList(ModConfig.mobSpawns.elephant.elephantBiomes));
 	
 	private static EntityEntry createEntityEntry(Class<? extends Entity> clazz, String name) {
