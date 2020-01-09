@@ -48,7 +48,7 @@ public class CovetedMobs {
 	public static final CreativeTabs tab = new CreativeTabs(CovetedMobs.MODID) {
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(ModObjects.iron_tusk_sword);
+			return new ItemStack(ModObjects.elephant_skull);
 		}
 	};
 	public static final Logger logger = LogManager.getLogger(NAME);
