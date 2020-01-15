@@ -17,7 +17,7 @@ public class RenderElephant extends RenderLiving<EntityElephant> {
 	
 	public RenderElephant(RenderManager manager) {
 		super(manager, new ModelElephant(), 0.1f);
-		addLayer(new LayerElephantSwords());
+		//addLayer(new LayerElephantSwords());
 	}
 	
 	@Override
