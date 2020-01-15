@@ -29,6 +29,7 @@ import java.util.UUID;
 public class EntityElephant extends ModEntityTameableGrazer {
 	
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
+	protected static final DataParameter<Integer> TAIL_SWING_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> TUSK_SWORDED = EntityDataManager.createKey(EntityElephant.class, DataSerializers.VARINT);
 	
 	protected EntityElephant(World world) {
@@ -112,16 +113,17 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
+		this.dataManager.register(TAIL_SWING_TIME, Integer.valueOf(0));
 	}
 	
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-		compound.setInteger("Tusksworded", this.getTuskSword());
-		
-		if (this.getOwnerUniqueId() != null) {
-			compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
-		}
-	}
+	//public void writeEntityToNBT(NBTTagCompound compound) {
+	//	super.writeEntityToNBT(compound);
+	//	compound.setInteger("Tusksworded", this.getTuskSword());
+	//
+	//	if (this.getOwnerUniqueId() != null) {
+	//		compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
+	//	}
+	//}
 	
 	@Override
 	protected int getSkinTypes() {
@@ -130,6 +132,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
+	}
+	
+	private int getNewTailSwing() {
+		return this.rand.nextInt(2000) + 60;
 	}
 	
 	@Override
@@ -146,6 +152,16 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		if (!this.world.isRemote && this.setGrazeTime(this.getGrazeTime() - 1) <= 0) {
 			this.setGrazeTime(this.getNewGraze());
 		}
+		
+		if (!this.onGround || this.getMoveHelper().isUpdating()) {
+			if (this.getTailSwingTime() <= 61) {
+				this.setTailSwingTime(60);
+			}
+		}
+		
+		if (!this.world.isRemote && this.setTailSwingTime(this.getTailSwingTime() - 1) <= 0) {
+			this.setTailSwingTime(this.getNewTailSwing());
+		}
 	}
 	
 	public int getGrazeTime() {
@@ -154,6 +170,15 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	public int setGrazeTime(int time) {
 		this.dataManager.set(GRAZE_TIME, Integer.valueOf(time));
+		return time;
+	}
+	
+	public int getTailSwingTime() {
+		return this.dataManager.get(TAIL_SWING_TIME).intValue();
+	}
+	
+	public int setTailSwingTime(int time) {
+		this.dataManager.set(TAIL_SWING_TIME, Integer.valueOf(time));
 		return time;
 	}
 	
