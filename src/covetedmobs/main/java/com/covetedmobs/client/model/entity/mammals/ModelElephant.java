@@ -332,6 +332,7 @@ public class ModelElephant extends ModelBase {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
 		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
 		float swingModifier = 0.6f;
+		float add = entity.getUniqueID().hashCode() * 0.003F;
 		boolean sit = false;
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
 		
@@ -344,12 +345,12 @@ public class ModelElephant extends ModelBase {
 		
 		if (entity instanceof EntityElephant) {
 			EntityElephant elephant = (EntityElephant) entity;
-			float swingTime = elephant.getTailSwingTime();
-			if (swingTime <= 60 && !elephant.isSitting()) {
-				this.tail.rotateAngleZ = 0f;
-			}
-			else {
-				this.tail.rotateAngleZ = 0F;
+			{
+				float mul = 0.1F;
+				float div = 40F;
+				this.tail.rotateAngleZ = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
+				this.earLeft1_01.rotateAngleY = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
+				this.earRight_01.rotateAngleY = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
 			}
 			
 			float grazeTime = elephant.getGrazeTime();
