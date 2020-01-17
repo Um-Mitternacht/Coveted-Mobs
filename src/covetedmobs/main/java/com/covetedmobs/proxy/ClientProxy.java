@@ -3,9 +3,11 @@ package com.covetedmobs.proxy;
 import com.covetedmobs.client.render.entity.living.herps.RenderBlindworm;
 import com.covetedmobs.client.render.entity.living.herps.RenderNewt;
 import com.covetedmobs.client.render.entity.living.mammals.RenderElephant;
+import com.covetedmobs.client.render.entity.living.mammals.RenderOryx;
 import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityNewt;
 import com.covetedmobs.common.entity.living.mammals.EntityElephant;
+import com.covetedmobs.common.entity.living.mammals.EntityOryx;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.block.Block;
@@ -81,6 +83,7 @@ public class ClientProxy extends ServerProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlindworm.class, RenderBlindworm::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityNewt.class, RenderNewt::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityElephant.class, RenderElephant::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityOryx.class, RenderOryx::new);
 	}
 	
 	@Override

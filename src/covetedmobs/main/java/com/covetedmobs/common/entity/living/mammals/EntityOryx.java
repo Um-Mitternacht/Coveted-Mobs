@@ -11,5 +11,11 @@ import net.minecraft.world.World;
 public class EntityOryx extends ModEntityAnimal {
 	protected EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
+		setSize(4.0f, 4.0f);
+	}
+	
+	@Override
+	protected int getSkinTypes() {
+		return 2;
 	}
 }

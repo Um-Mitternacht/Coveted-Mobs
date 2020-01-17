@@ -19,6 +19,7 @@ public class ModConfig {
 		public final Newt newt = new Newt();
 		public final Blindworm blindworm = new Blindworm();
 		public final Elephant elephant = new Elephant();
+		public final Oryx oryx = new Oryx();
 		
 		public static class Blindworm {
 			@Config.Comment("The list of BiomeDictionary types that the blindworm will spawn in.")
@@ -69,6 +70,23 @@ public class ModConfig {
 			@Config.Comment("The maximum amount of elephants to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
 			public int elephantMax = 4;
+		}
+		
+		public static class Oryx {
+			@Config.Comment("The list of BiomeDictionary types that the oryx will spawn in.")
+			public String[] oryxBiomes = {BiomeDictionary.Type.SAVANNA.getName(), BiomeDictionary.Type.SANDY.getName()};
+			
+			@Config.Comment("The weight chance for oryxes to spawn.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int oryxWeight = 20;
+			
+			@Config.Comment("The minimum amount of oryxes to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int oryxMin = 1;
+			
+			@Config.Comment("The maximum amount of oryxes to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int oryxMax = 4;
 		}
 		
 		@Mod.EventBusSubscriber(modid = CovetedMobs.MODID)
