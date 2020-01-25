@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class EntityOryx extends ModEntityAnimal {
 	protected EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
-		setSize(4.0f, 4.0f);
+		setSize(1.6f, 2.3f);
 	}
 	
 	@Override
