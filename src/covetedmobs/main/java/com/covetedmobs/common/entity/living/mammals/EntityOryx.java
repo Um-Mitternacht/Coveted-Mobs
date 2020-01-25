@@ -5,6 +5,8 @@ import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -20,6 +22,11 @@ public class EntityOryx extends ModEntityAnimal {
 	protected EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
 		setSize(1.6f, 2.3f);
+	}
+	
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return stack.getItem() == Items.WHEAT;
 	}
 	
 	@Override
