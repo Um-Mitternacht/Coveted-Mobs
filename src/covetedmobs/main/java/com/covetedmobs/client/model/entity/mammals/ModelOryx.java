@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * Oryx - The_Indominator
@@ -276,7 +277,7 @@ public class ModelOryx extends ModelBase {
 	
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-		
+		float swingModifier = 0.3f;
 		float add = entity.getUniqueID().hashCode() * 0.003F;
 		if (entity instanceof EntityOryx) {
 			EntityOryx oryx = (EntityOryx) entity;
@@ -286,6 +287,15 @@ public class ModelOryx extends ModelBase {
 				this.Tail01.rotateAngleZ = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
 			}
 		}
+		this.Bum.offsetY = 0f;
+		this.LeftLegFront01.rotateAngleZ = 0f;
+		this.RightLegFront01.rotateAngleZ = 0f;
+		this.RightLegBack01.rotateAngleZ = 0f;
+		this.LeftLegBack01.rotateAngleZ = 0f;
+		this.LeftLegFront01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+		this.RightLegFront01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+		this.RightLegBack01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
+		this.LeftLegBack01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 	}
 	
 	/**
