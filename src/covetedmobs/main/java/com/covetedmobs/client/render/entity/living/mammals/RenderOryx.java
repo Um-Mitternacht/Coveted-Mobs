@@ -36,7 +36,7 @@ public class RenderOryx extends RenderLiving<EntityOryx> {
 	@Override
 	protected void preRenderCallback(EntityOryx entity, float partialTickTime) {
 		super.preRenderCallback(entity, partialTickTime);
-		if (entity.isChild()) GlStateManager.scale(0.8, 0.8, 0.8);
-		else GlStateManager.scale(1.4, 1.4, 1.4);
+		if (entity.isChild()) GlStateManager.scale(0.5, 0.5, 0.5);
+		else GlStateManager.scale(1.0, 1.0, 1.0);
 	}
 }

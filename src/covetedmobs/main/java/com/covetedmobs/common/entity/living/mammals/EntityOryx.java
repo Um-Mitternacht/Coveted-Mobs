@@ -25,6 +25,41 @@ public class EntityOryx extends ModEntityAnimal {
 	}
 	
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
+	}
+	
+	private int getNewGraze() {
+		return this.rand.nextInt(2000) + 80;
+	}
+	
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		if (!onGround && motionY <= 0) motionY *= 0.6;
+		
+		if (!this.onGround || this.getMoveHelper().isUpdating()) {
+			if (this.getGrazeTime() <= 81) {
+				this.setGrazeTime(80);
+			}
+		}
+		
+		if (!this.world.isRemote && this.setGrazeTime(this.getGrazeTime() - 1) <= 0) {
+			this.setGrazeTime(this.getNewGraze());
+		}
+	}
+	
+	public int getGrazeTime() {
+		return this.dataManager.get(GRAZE_TIME).intValue();
+	}
+	
+	public int setGrazeTime(int time) {
+		this.dataManager.set(GRAZE_TIME, Integer.valueOf(time));
+		return time;
+	}
+	
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.WHEAT;
 	}
