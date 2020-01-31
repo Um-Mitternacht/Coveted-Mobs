@@ -22,6 +22,7 @@ public class EntityOryx extends ModEntityAnimal {
 	protected EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
 		setSize(1.6f, 2.3f);
+		this.setGrazeTime(this.getNewGraze());
 	}
 	
 	@Override
