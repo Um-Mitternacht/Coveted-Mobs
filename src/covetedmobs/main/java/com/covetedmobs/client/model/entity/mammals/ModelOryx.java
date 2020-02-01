@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -279,6 +280,7 @@ import net.minecraft.util.math.MathHelper;
 	
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
 		float swingModifier = 0.3f;
 		float add = entity.getUniqueID().hashCode() * 0.003F;
 		if (entity instanceof EntityOryx) {
@@ -290,10 +292,10 @@ import net.minecraft.util.math.MathHelper;
 			}
 			float grazeTime = oryx.getGrazeTime();
 			if (grazeTime <= 80) {
-				this.Neck.rotateAngleX = 0F;
+				this.Neck.rotateAngleX = - -0.91869712141416456F;
 			}
 			else {
-				this.Neck.rotateAngleX = - -0.91869712141416456F;
+				this.Neck.rotateAngleX = 0F;
 			}
 		}
 		this.Bum.offsetY = 0f;
