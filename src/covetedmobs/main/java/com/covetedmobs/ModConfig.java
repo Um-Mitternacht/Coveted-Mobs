@@ -1,5 +1,6 @@
 package com.covetedmobs;
 
+import com.covetedmobs.client.render.entity.living.arthropods.RenderPelicanSpider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -20,6 +21,7 @@ public class ModConfig {
 		public final Blindworm blindworm = new Blindworm();
 		public final Elephant elephant = new Elephant();
 		public final Oryx oryx = new Oryx();
+		public final PelicanSpider pelicanspider = new PelicanSpider();
 		
 		public static class Blindworm {
 			@Config.Comment("The list of BiomeDictionary types that the blindworm will spawn in.")
@@ -87,6 +89,23 @@ public class ModConfig {
 			@Config.Comment("The maximum amount of oryxes to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
 			public int oryxMax = 4;
+		}
+		
+		public static class PelicanSpider {
+			@Config.Comment("The list of BiomeDictionary types that the pelican spider will spawn in.")
+			public String[] pelicanspiderBiomes = {BiomeDictionary.Type.JUNGLE.getName()};
+			
+			@Config.Comment("The weight chance for pelican spiders to spawn.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int pelicanspiderWeight = 20;
+			
+			@Config.Comment("The minimum amount of pelican spiders to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int pelicanspiderMin = 1;
+			
+			@Config.Comment("The maximum amount of pelican spiders to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int pelicanspiderMax = 4;
 		}
 		
 		@Mod.EventBusSubscriber(modid = CovetedMobs.MODID)

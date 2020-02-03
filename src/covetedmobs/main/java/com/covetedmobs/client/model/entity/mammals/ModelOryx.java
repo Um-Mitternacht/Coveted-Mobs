@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
  * Oryx - The_Indominator
  * Created using Tabula 7.0.1
  */
-	public class ModelOryx extends ModelBase {
+public class ModelOryx extends ModelBase {
 	public double[] modelScale = new double[]{2.0D, 2.0D, 2.0D};
 	public ModelRenderer Torso;
 	public ModelRenderer Shoulder;

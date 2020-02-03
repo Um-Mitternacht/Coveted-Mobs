@@ -1,12 +1,9 @@
 package com.covetedmobs.client.render.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
-import com.covetedmobs.client.model.entity.mammals.ModelElephant;
 import com.covetedmobs.client.model.entity.mammals.ModelOryx;
-import com.covetedmobs.common.entity.living.mammals.EntityElephant;
 import com.covetedmobs.common.entity.living.mammals.EntityOryx;
 import com.covetedmobs.common.entity.util.ModEntityAnimal;
-import com.covetedmobs.common.entity.util.ModEntityTameable;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -25,10 +22,8 @@ public class RenderOryx extends RenderLiving<EntityOryx> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityOryx entity) {
-		if (entity.isChild())
-			return TEX_BABY;
-		else if (!entity.isChild())
-			return TEX[entity.getDataManager().get(ModEntityAnimal.SKIN)];
+		if (entity.isChild()) return TEX_BABY;
+		else if (!entity.isChild()) return TEX[entity.getDataManager().get(ModEntityAnimal.SKIN)];
 		return null;
 	}
 	

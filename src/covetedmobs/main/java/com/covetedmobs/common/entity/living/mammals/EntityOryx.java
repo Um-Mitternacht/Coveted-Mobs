@@ -31,6 +31,11 @@ public class EntityOryx extends ModEntityAnimal {
 		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
+	@Override
+	protected int getSkinTypes() {
+		return 2;
+	}
+	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
 	}
@@ -51,6 +56,11 @@ public class EntityOryx extends ModEntityAnimal {
 		}
 	}
 	
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return stack.getItem() == Items.WHEAT;
+	}
+	
 	public int getGrazeTime() {
 		return this.dataManager.get(GRAZE_TIME).intValue();
 	}
@@ -58,11 +68,6 @@ public class EntityOryx extends ModEntityAnimal {
 	public int setGrazeTime(int time) {
 		this.dataManager.set(GRAZE_TIME, Integer.valueOf(time));
 		return time;
-	}
-	
-	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.WHEAT;
 	}
 	
 	@Override
@@ -86,10 +91,5 @@ public class EntityOryx extends ModEntityAnimal {
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.1D);
-	}
-	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
 	}
 }

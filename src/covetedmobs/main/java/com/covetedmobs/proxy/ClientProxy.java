@@ -1,9 +1,11 @@
 package com.covetedmobs.proxy;
 
+import com.covetedmobs.client.render.entity.living.arthropods.RenderPelicanSpider;
 import com.covetedmobs.client.render.entity.living.herps.RenderBlindworm;
 import com.covetedmobs.client.render.entity.living.herps.RenderNewt;
 import com.covetedmobs.client.render.entity.living.mammals.RenderElephant;
 import com.covetedmobs.client.render.entity.living.mammals.RenderOryx;
+import com.covetedmobs.common.entity.living.arthropods.EntityPelicanSpider;
 import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityNewt;
 import com.covetedmobs.common.entity.living.mammals.EntityElephant;
@@ -84,6 +86,7 @@ public class ClientProxy extends ServerProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityNewt.class, RenderNewt::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityElephant.class, RenderElephant::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityOryx.class, RenderOryx::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityPelicanSpider.class, RenderPelicanSpider::new);
 	}
 	
 	@Override

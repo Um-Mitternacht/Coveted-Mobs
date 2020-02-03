@@ -6,6 +6,7 @@ package com.covetedmobs.registry;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.ModConfig;
+import com.covetedmobs.common.entity.living.arthropods.EntityPelicanSpider;
 import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityNewt;
 import com.covetedmobs.common.entity.living.mammals.EntityElephant;
@@ -32,6 +33,7 @@ public class ModEntities {
 	public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x555D50, 0xFF8C00, EnumCreatureType.AMBIENT, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
 	public static final EntityEntry elephant = createEntityEntry(EntityElephant.class, "elephant", 0xC0C0C0, 0x555555, EnumCreatureType.CREATURE, ModConfig.mobSpawns.elephant.elephantWeight, ModConfig.mobSpawns.elephant.elephantMin, ModConfig.mobSpawns.elephant.elephantMax, Arrays.asList(ModConfig.mobSpawns.elephant.elephantBiomes));
 	public static final EntityEntry oryx = createEntityEntry(EntityOryx.class, "oryx", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.oryx.oryxWeight, ModConfig.mobSpawns.oryx.oryxMin, ModConfig.mobSpawns.oryx.oryxMax, Arrays.asList(ModConfig.mobSpawns.oryx.oryxBiomes));
+	public static final EntityEntry pelicanspider = createEntityEntry(EntityPelicanSpider.class, "pelicanspider", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.pelicanspider.pelicanspiderWeight, ModConfig.mobSpawns.pelicanspider.pelicanspiderMin, ModConfig.mobSpawns.pelicanspider.pelicanspiderMax, Arrays.asList(ModConfig.mobSpawns.pelicanspider.pelicanspiderBiomes));
 	
 	private static EntityEntry createEntityEntry(Class<? extends Entity> clazz, String name) {
 		return EntityEntryBuilder.create().entity(clazz).id(new ResourceLocation(CovetedMobs.MODID, name), entity_id++).name(CovetedMobs.MODID + "." + name).tracker(128, 1, true).build();
