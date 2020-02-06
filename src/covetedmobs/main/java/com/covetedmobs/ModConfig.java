@@ -29,15 +29,15 @@ public class ModConfig {
 			
 			@Config.Comment("The weight chance for blindworm to spawn.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int blindwormWeight = 20;
+			public int blindwormWeight = 6;
 			
 			@Config.Comment("The minimum amount of blindworms to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int blindwormMin = 1;
+			public int blindwormMin = 0;
 			
 			@Config.Comment("The maximum amount of blindworms to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int blindwormMax = 4;
+			public int blindwormMax = 2;
 		}
 		
 		public static class Newt {
@@ -46,15 +46,15 @@ public class ModConfig {
 			
 			@Config.Comment("The weight chance for newts to spawn.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int newtWeight = 20;
+			public int newtWeight = 6;
 			
 			@Config.Comment("The minimum amount of newts to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int newtMin = 1;
+			public int newtMin = 0;
 			
 			@Config.Comment("The maximum amount of newts to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int newtMax = 4;
+			public int newtMax = 2;
 		}
 		
 		public static class Elephant {
@@ -71,7 +71,7 @@ public class ModConfig {
 			
 			@Config.Comment("The maximum amount of elephants to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int elephantMax = 4;
+			public int elephantMax = 6;
 		}
 		
 		public static class Oryx {
@@ -88,7 +88,7 @@ public class ModConfig {
 			
 			@Config.Comment("The maximum amount of oryxes to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int oryxMax = 4;
+			public int oryxMax = 8;
 		}
 		
 		public static class PelicanSpider {
@@ -97,15 +97,15 @@ public class ModConfig {
 			
 			@Config.Comment("The weight chance for pelican spiders to spawn.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int pelicanspiderWeight = 20;
+			public int pelicanspiderWeight = 10;
 			
 			@Config.Comment("The minimum amount of pelican spiders to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int pelicanspiderMin = 1;
+			public int pelicanspiderMin = 0;
 			
 			@Config.Comment("The maximum amount of pelican spiders to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
-			public int pelicanspiderMax = 4;
+			public int pelicanspiderMax = 2;
 		}
 		
 		@Mod.EventBusSubscriber(modid = CovetedMobs.MODID)
