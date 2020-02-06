@@ -3,6 +3,7 @@ package com.covetedmobs.common.entity.living.arthropods;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +23,19 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;
+	}
+	
+	@Override
+	protected void applyEntityAttributes() {
+		super.applyEntityAttributes();
+		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5);
+		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32);
+		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25);
+		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.5);
+		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.0);
+		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30);
+		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.1D);
 	}
 	
 	@Override
