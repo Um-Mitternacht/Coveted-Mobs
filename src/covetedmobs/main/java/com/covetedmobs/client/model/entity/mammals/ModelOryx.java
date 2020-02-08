@@ -292,7 +292,7 @@ public class ModelOryx extends ModelBase {
 			}
 			float grazeTime = oryx.getGrazeTime();
 			if (grazeTime <= 80) {
-				this.Neck.rotateAngleX = (float) Math.toRadians((grazeTime % (60F / grazeTime))) * 6F + (float) Math.toRadians(30);
+				this.Neck.rotateAngleX = - -0.91869712141416456F;
 			}
 			else {
 				this.Neck.rotateAngleX = 0F;
