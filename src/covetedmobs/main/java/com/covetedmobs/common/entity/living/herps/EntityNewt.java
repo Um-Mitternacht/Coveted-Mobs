@@ -25,6 +25,11 @@ public class EntityNewt extends ModEntityAnimal {
 	}
 	
 	@Override
+	protected boolean canDespawn() {
+		return true;
+	}
+	
+	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		if (ticksExisted % 20 == 0 && isWet()) heal(1);

@@ -26,6 +26,12 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
+	}
+	
+	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);

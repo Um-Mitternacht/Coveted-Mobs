@@ -134,6 +134,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
+		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
 		if (!onGround && motionY <= 0) motionY *= 0.6;
 		
 		if (!this.onGround || this.getMoveHelper().isUpdating()) {

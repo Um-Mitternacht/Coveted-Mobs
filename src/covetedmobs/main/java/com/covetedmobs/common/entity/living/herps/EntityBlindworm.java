@@ -25,6 +25,17 @@ public class EntityBlindworm extends ModEntityAnimal {
 	}
 	
 	@Override
+	protected boolean canDespawn() {
+		return true;
+	}
+	
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
+	}
+	
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.SPIDER_EYE;
 	}
