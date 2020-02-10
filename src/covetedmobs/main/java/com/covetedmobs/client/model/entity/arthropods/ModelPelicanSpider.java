@@ -421,6 +421,7 @@ public class ModelPelicanSpider extends ModelBase {
 		GlStateManager.popMatrix();
 		GlStateManager.popMatrix();
 	}
+	
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		float swingModifier = 0.3f;
@@ -432,6 +433,24 @@ public class ModelPelicanSpider extends ModelBase {
 		this.LLeg2_III.rotateAngleY = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		this.RLeg2_IV.rotateAngleY = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		this.LLeg2_IV.rotateAngleY = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
+		
+		float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
+		float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float) Math.PI) * 0.4F) * limbSwingAmount;
+		float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+		float f6 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float) Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+		float f7 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + 0.0F) * 0.4F) * limbSwingAmount;
+		float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float) Math.PI) * 0.4F) * limbSwingAmount;
+		float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+		float f10 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float) Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+		
+		this.RLeg2_I.rotateAngleY += f3;
+		this.LLeg2_I.rotateAngleY += -f3;
+		this.RLeg2_II.rotateAngleY += f4;
+		this.LLeg2_II.rotateAngleY += -f4;
+		this.RLeg2_III.rotateAngleY += f5;
+		this.LLeg2_III.rotateAngleY += -f5;
+		this.RLeg2_IV.rotateAngleY += f6;
+		this.LLeg2_IV.rotateAngleY += -f6;
 	}
 	
 	/**

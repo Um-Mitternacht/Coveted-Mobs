@@ -1,6 +1,5 @@
 package com.covetedmobs;
 
-import com.covetedmobs.client.render.entity.living.arthropods.RenderPelicanSpider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;

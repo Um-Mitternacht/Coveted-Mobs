@@ -53,8 +53,14 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return 0;
 	}
 	
-	@Override
-	protected void collideWithNearbyEntities() {
+	public boolean attackEntityAsMob(Entity entityIn) {
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ((int) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()));
+		
+		if (flag) {
+			this.applyEnchantments(this, entityIn);
+		}
+		
+		return flag;
 	}
 	
 	public boolean attackEntityFrom(DamageSource source, float amount) {
@@ -92,13 +98,16 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+		this.targetTasks.addTask(2, new EntityAITargetNonTamed<>(this, EntityPlayer.class, false, p -> p.getDistanceSq(this) < 1));
+		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
 	}
 	
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.7);
+		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.5D);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50);
 		getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(1.4);
@@ -113,6 +122,11 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
+	@Override
+	protected int getSkinTypes() {
+		return 2;
+	}
+	
 	//public void writeEntityToNBT(NBTTagCompound compound) {
 	//	super.writeEntityToNBT(compound);
 	//	compound.setInteger("Tusksworded", this.getTuskSword());
@@ -121,11 +135,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	//		compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
 	//	}
 	//}
-	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
-	}
 	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
