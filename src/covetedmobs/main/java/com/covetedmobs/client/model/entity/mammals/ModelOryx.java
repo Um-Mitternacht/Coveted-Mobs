@@ -283,6 +283,16 @@ public class ModelOryx extends ModelBase {
 		boolean flag = entity instanceof EntityLivingBase && ((EntityLivingBase) entity).getTicksElytraFlying() > 4;
 		float swingModifier = 0.3f;
 		float add = entity.getUniqueID().hashCode() * 0.003F;
+		this.Bum.offsetY = 0f;
+		this.LeftLegFront01.rotateAngleZ = 0f;
+		this.RightLegFront01.rotateAngleZ = 0f;
+		this.RightLegBack01.rotateAngleZ = 0f;
+		this.LeftLegBack01.rotateAngleZ = 0f;
+		this.LeftLegFront01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+		this.RightLegFront01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+		this.RightLegBack01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
+		this.LeftLegBack01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
+		
 		if (entity instanceof EntityOryx) {
 			EntityOryx oryx = (EntityOryx) entity;
 			{
@@ -293,27 +303,17 @@ public class ModelOryx extends ModelBase {
 			if (oryx.isAttackingFromServer()) {
 				this.Neck.rotateAngleX = - -0.41869712141416456F;
 			}
-			else {
-				this.Neck.rotateAngleX = 0F;
-			}
-			float grazeTime = oryx.getGrazeTime();
-			if (grazeTime <= 80 && !oryx.isAttackingFromServer()) {
-				this.Neck.rotateAngleX = - -0.91869712141416456F;
-			}
-			else {
-				this.Neck.rotateAngleX = 0F;
+			if (!oryx.isAttackingFromServer()) {
+					float grazeTime = oryx.getGrazeTime();
+					if (grazeTime <= 80) {
+					this.Neck.rotateAngleX = - -0.91869712141416456F;
+					}
+					else {
+						this.Neck.rotateAngleX = 0F;
+					}
+				}
 			}
 		}
-		this.Bum.offsetY = 0f;
-		this.LeftLegFront01.rotateAngleZ = 0f;
-		this.RightLegFront01.rotateAngleZ = 0f;
-		this.RightLegBack01.rotateAngleZ = 0f;
-		this.LeftLegBack01.rotateAngleZ = 0f;
-		this.LeftLegFront01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-		this.RightLegFront01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-		this.RightLegBack01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
-		this.LeftLegBack01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
-	}
 	
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
