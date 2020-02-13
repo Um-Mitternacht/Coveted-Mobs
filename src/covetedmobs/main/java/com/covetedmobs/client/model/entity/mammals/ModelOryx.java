@@ -304,16 +304,16 @@ public class ModelOryx extends ModelBase {
 				this.Neck.rotateAngleX = - -0.41869712141416456F;
 			}
 			if (!oryx.isAttackingFromServer()) {
-					float grazeTime = oryx.getGrazeTime();
-					if (grazeTime <= 80) {
+				float grazeTime = oryx.getGrazeTime();
+				if (grazeTime <= 80) {
 					this.Neck.rotateAngleX = - -0.91869712141416456F;
-					}
-					else {
-						this.Neck.rotateAngleX = 0F;
-					}
+				}
+				else {
+					this.Neck.rotateAngleX = 0F;
 				}
 			}
 		}
+	}
 	
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts

@@ -52,6 +52,18 @@ public class EntityOryx extends ModEntityAnimal {
 		return 2;
 	}
 	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		compound.setBoolean("AttackSync", this.isAttackingFromServer());
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
+	}
+	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
 	}
@@ -77,21 +89,8 @@ public class EntityOryx extends ModEntityAnimal {
 	}
 	
 	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-		compound.setBoolean("AttackSync", this.isAttackingFromServer());
-	}
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
-	}
-	
-	@Override
-	public void setAttackTarget(EntityLivingBase entitylivingbaseIn) {
-		this.setAttackingOnClient(entitylivingbaseIn != null);
-		super.setAttackTarget(entitylivingbaseIn);
+	public boolean isBreedingItem(ItemStack stack) {
+		return stack.getItem() == Items.WHEAT;
 	}
 	
 	public boolean isAttackingFromServer() {
@@ -104,11 +103,6 @@ public class EntityOryx extends ModEntityAnimal {
 	
 	public float getHeadPitch() {
 		return this.isAttackingFromServer() ? 0.15F : -0.698F;
-	}
-	
-	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == Items.WHEAT;
 	}
 	
 	public int getGrazeTime() {
@@ -142,5 +136,11 @@ public class EntityOryx extends ModEntityAnimal {
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.1D);
+	}
+	
+	@Override
+	public void setAttackTarget(EntityLivingBase entitylivingbaseIn) {
+		this.setAttackingOnClient(entitylivingbaseIn != null);
+		super.setAttackTarget(entitylivingbaseIn);
 	}
 }
