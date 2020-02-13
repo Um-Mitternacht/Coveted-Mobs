@@ -3,11 +3,13 @@ package com.covetedmobs.common.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -20,6 +22,7 @@ import net.minecraft.world.World;
  */
 public class EntityOryx extends ModEntityAnimal {
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityOryx.class, DataSerializers.VARINT);
+	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityOryx.class, DataSerializers.BOOLEAN);
 	
 	protected EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
@@ -41,6 +44,7 @@ public class EntityOryx extends ModEntityAnimal {
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
+		this.dataManager.register(ATTACKING, Boolean.valueOf(false));
 	}
 	
 	@Override
@@ -67,6 +71,39 @@ public class EntityOryx extends ModEntityAnimal {
 		if (!this.world.isRemote && this.setGrazeTime(this.getGrazeTime() - 1) <= 0) {
 			this.setGrazeTime(this.getNewGraze());
 		}
+		if (!this.world.isRemote && (this.getAttackTarget() == null || this.getAttackTarget().isDead)) {
+			this.setAttackingOnClient(false);
+		}
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		compound.setBoolean("AttackSync", this.isAttackingFromServer());
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
+	}
+	
+	@Override
+	public void setAttackTarget(EntityLivingBase entitylivingbaseIn) {
+		this.setAttackingOnClient(entitylivingbaseIn != null);
+		super.setAttackTarget(entitylivingbaseIn);
+	}
+	
+	public boolean isAttackingFromServer() {
+		return this.dataManager.get(ATTACKING).booleanValue();
+	}
+	
+	public void setAttackingOnClient(boolean in) {
+		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
+	}
+	
+	public float getHeadPitch() {
+		return this.isAttackingFromServer() ? 0.15F : -0.698F;
 	}
 	
 	@Override

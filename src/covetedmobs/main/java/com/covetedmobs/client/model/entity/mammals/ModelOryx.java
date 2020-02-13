@@ -291,8 +291,15 @@ public class ModelOryx extends ModelBase {
 				this.Tail01.rotateAngleZ = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
 			}
 			float grazeTime = oryx.getGrazeTime();
-			if (grazeTime <= 80) {
+			if (grazeTime <= 80 && !oryx.isAttackingFromServer()) {
 				this.Neck.rotateAngleX = - -0.91869712141416456F;
+			}
+			else {
+				this.Neck.rotateAngleX = 0F;
+			}
+			
+			if (oryx.isAttackingFromServer()) {
+				this.Neck.rotateAngleX = - -0.41869712141416456F;
 			}
 			else {
 				this.Neck.rotateAngleX = 0F;
