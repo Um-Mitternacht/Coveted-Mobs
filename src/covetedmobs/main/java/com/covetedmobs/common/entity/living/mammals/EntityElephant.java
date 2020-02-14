@@ -39,7 +39,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
-		setSize(4.0f, 4.0f);
+		setSize(2.3f, 2.9f);
 		this.setGrazeTime(this.getNewGraze());
 	}
 	
