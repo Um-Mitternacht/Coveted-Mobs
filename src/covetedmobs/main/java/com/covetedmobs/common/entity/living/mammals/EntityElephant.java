@@ -147,10 +147,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.GRASS) {
-								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
-								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
-							}
 							if(iblockstate.getMaterial() == Material.VINE) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
@@ -160,6 +156,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
 							if(iblockstate.getMaterial() == Material.CRAFTED_SNOW) {
+								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
+								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
+							}
+							if(iblockstate.getMaterial() == Material.PLANTS) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
