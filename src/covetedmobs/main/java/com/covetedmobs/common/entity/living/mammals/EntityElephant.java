@@ -163,6 +163,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
+							if(iblockstate.getMaterial() == Material.GOURD) {
+								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
+								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
+							}
 						} catch(Throwable throwable) {
 							CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Colliding entity with block");
 							CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being collided with");
