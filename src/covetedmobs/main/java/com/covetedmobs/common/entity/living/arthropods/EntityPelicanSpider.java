@@ -2,6 +2,7 @@ package com.covetedmobs.common.entity.living.arthropods;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -11,10 +12,12 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -34,6 +37,17 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		return effect.getPotion() != MobEffects.SLOWNESS && effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
 	}
 	
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return SoundEvents.ENTITY_SPIDER_HURT;
+	}
+	
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.ENTITY_SPIDER_DEATH;
+	}
+	
+	public void fall(float distance, float damageMultiplier) {
+	}
+	
 	public EnumCreatureAttribute getCreatureAttribute() {
 		return EnumCreatureAttribute.ARTHROPOD;
 	}
@@ -48,13 +62,18 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		return super.attackEntityAsMob(entity);
 	}
 	
-	public void fall(float distance, float damageMultiplier) {
-	}
-	
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
+	}
+	
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.ENTITY_SPIDER_AMBIENT;
+	}
+	
+	protected void playStepSound(BlockPos pos, Block blockIn) {
+		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
 	}
 	
 	@Override

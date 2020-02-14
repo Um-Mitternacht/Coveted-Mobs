@@ -4,7 +4,6 @@ import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
 import com.covetedmobs.registry.ModObjects;
 import com.google.common.base.Optional;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
@@ -15,7 +14,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -125,6 +123,17 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9D);
 	}
 	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
+	}
+	
+	@Override
+	protected int getSkinTypes() {
+		return 2;
+	}
+	
 	//Credit to its_meow for the code used in this section, as it was used in the moose to destroy blocks.
 	@Override
 	protected void doBlockCollisions() {
@@ -133,45 +142,46 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos1 = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.maxX - 0.001D, axisalignedbb.maxY - 0.001D, axisalignedbb.maxZ - 0.001D);
 		BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos2 = BlockPos.PooledMutableBlockPos.retain();
 		
-		if(this.world.isAreaLoaded(blockpos$pooledmutableblockpos, blockpos$pooledmutableblockpos1)) {
-			for(int i = blockpos$pooledmutableblockpos.getX(); i <= blockpos$pooledmutableblockpos1.getX(); ++i) {
-				for(int j = blockpos$pooledmutableblockpos.getY(); j <= blockpos$pooledmutableblockpos1.getY(); ++j) {
-					for(int k = blockpos$pooledmutableblockpos.getZ(); k <= blockpos$pooledmutableblockpos1.getZ(); ++k) {
+		if (this.world.isAreaLoaded(blockpos$pooledmutableblockpos, blockpos$pooledmutableblockpos1)) {
+			for (int i = blockpos$pooledmutableblockpos.getX(); i <= blockpos$pooledmutableblockpos1.getX(); ++i) {
+				for (int j = blockpos$pooledmutableblockpos.getY(); j <= blockpos$pooledmutableblockpos1.getY(); ++j) {
+					for (int k = blockpos$pooledmutableblockpos.getZ(); k <= blockpos$pooledmutableblockpos1.getZ(); ++k) {
 						blockpos$pooledmutableblockpos2.setPos(i, j, k);
 						IBlockState iblockstate = this.world.getBlockState(blockpos$pooledmutableblockpos2);
 						
 						try {
 							iblockstate.getBlock().onEntityCollision(this.world, blockpos$pooledmutableblockpos2, iblockstate, this);
 							this.onInsideBlock(iblockstate);
-							if(iblockstate.getMaterial() == Material.LEAVES) {
+							if (iblockstate.getMaterial() == Material.LEAVES) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.VINE) {
+							if (iblockstate.getMaterial() == Material.VINE) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.SNOW) {
+							if (iblockstate.getMaterial() == Material.SNOW) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.CRAFTED_SNOW) {
+							if (iblockstate.getMaterial() == Material.CRAFTED_SNOW) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.PLANTS) {
+							if (iblockstate.getMaterial() == Material.PLANTS) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.GOURD) {
+							if (iblockstate.getMaterial() == Material.GOURD) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-							if(iblockstate.getMaterial() == Material.WEB) {
+							if (iblockstate.getMaterial() == Material.WEB) {
 								iblockstate.getBlock().breakBlock(world, blockpos$pooledmutableblockpos2.toImmutable(), iblockstate);
 								world.setBlockToAir(blockpos$pooledmutableblockpos2.toImmutable());
 							}
-						} catch(Throwable throwable) {
+						}
+						catch (Throwable throwable) {
 							CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Colliding entity with block");
 							CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being collided with");
 							CrashReportCategory.addBlockInfo(crashreportcategory, blockpos$pooledmutableblockpos2, iblockstate);
@@ -185,17 +195,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		blockpos$pooledmutableblockpos.release();
 		blockpos$pooledmutableblockpos1.release();
 		blockpos$pooledmutableblockpos2.release();
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
-	}
-	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
 	}
 	
 	//public void writeEntityToNBT(NBTTagCompound compound) {
