@@ -28,7 +28,7 @@ public class RenderElephant extends RenderLiving<EntityElephant> {
 	@Override
 	protected void preRenderCallback(EntityElephant entity, float partialTickTime) {
 		super.preRenderCallback(entity, partialTickTime);
-		if (entity.isChild()) GlStateManager.scale(1.4, 1.4, 1.4);
-		else GlStateManager.scale(2.7, 2.7, 2.7);
+		if (entity.isChild()) GlStateManager.scale(1.2, 1.2, 1.2);
+		else GlStateManager.scale(2.0, 2.0, 2.0);
 	}
 }
