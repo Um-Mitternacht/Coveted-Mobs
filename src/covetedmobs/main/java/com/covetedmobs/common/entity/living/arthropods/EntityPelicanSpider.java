@@ -31,7 +31,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	
 	@Override
 	public boolean isPotionApplicable(PotionEffect effect) {
-		return effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
+		return effect.getPotion() != MobEffects.SLOWNESS && effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
 	}
 	
 	public EnumCreatureAttribute getCreatureAttribute() {
@@ -46,6 +46,9 @@ public class EntityPelicanSpider extends ModEntityTameable {
 			if (entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 1, false, false));
 		}
 		return super.attackEntityAsMob(entity);
+	}
+	
+	public void fall(float distance, float damageMultiplier) {
 	}
 	
 	@Override
