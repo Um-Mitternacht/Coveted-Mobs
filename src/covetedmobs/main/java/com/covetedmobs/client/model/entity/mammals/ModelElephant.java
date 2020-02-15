@@ -350,7 +350,7 @@ public class ModelElephant extends ModelBase {
 				float div = 40F;
 				this.tail.rotateAngleZ = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
 				this.earLeft1_01.rotateAngleY = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
-				this.earRight_01.rotateAngleY = (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
+				this.earRight_01.rotateAngleY = - (float) Math.cos(ageInTicks * (mul + 0.06F) + add) / div + 0F;
 			}
 			
 			float grazeTime = elephant.getGrazeTime();
