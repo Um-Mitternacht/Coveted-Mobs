@@ -1,6 +1,7 @@
 package com.covetedmobs.common.entity.living.arthropods;
 
 import com.covetedmobs.CovetedMobs;
+import com.covetedmobs.common.entity.living.mammals.EntityOryx;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,10 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +32,7 @@ import net.minecraft.world.World;
  */
 public class EntityPelicanSpider extends ModEntityTameable {
 	
+	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityPelicanSpider.class, DataSerializers.BOOLEAN);
 	
 	protected EntityPelicanSpider(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/pelican_spider"), Items.SPIDER_EYE, Items.FERMENTED_SPIDER_EYE);
@@ -83,6 +89,32 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		compound.setBoolean("AttackSync", this.isAttackingFromServer());
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
+	}
+	
+	public boolean isAttackingFromServer() {
+		return this.dataManager.get(ATTACKING).booleanValue();
+	}
+	
+	public void setAttackingOnClient(boolean in) {
+		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(ATTACKING, Boolean.valueOf(false));
+	}
+	
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.SPIDER_EYE;
 	}
@@ -125,6 +157,10 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
+		
+		if (!this.world.isRemote && (this.getAttackTarget() == null || this.getAttackTarget().isDead)) {
+			this.setAttackingOnClient(false);
+		}
 	}
 	
 	protected SoundEvent getAmbientSound() {
