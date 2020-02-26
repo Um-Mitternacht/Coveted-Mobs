@@ -24,11 +24,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 /**
  * Created by Joseph on 1/30/2020.
  */
+
+//Credit to Twilight Forest devs for code used for pelican spider grabbing
 public class EntityPelicanSpider extends ModEntityTameable {
 	
 	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityPelicanSpider.class, DataSerializers.BOOLEAN);
@@ -61,6 +64,11 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		float f = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
+		
+		if (this.getPassengers().isEmpty() && !entity.isRiding()) {
+			entity.startRiding(this);
+		}
+		
 		if (entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue())) {
 			applyEnchantments(this, entity);
 			if (entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 1, false, false));
@@ -146,9 +154,50 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
 	}
 	
+	private Vec3d getRiderPosition() {
+		if (!this.getPassengers().isEmpty()) {
+			float distance = 0.9F;
+			
+			double dx = Math.cos((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
+			double dz = Math.sin((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
+			
+			return new Vec3d(this.posX + dx, this.posY + this.getMountedYOffset() + this.getPassengers().get(0).getYOffset(), this.posZ + dz);
+		}
+		else {
+			return new Vec3d(this.posX, this.posY, this.posZ);
+		}
+	}
+	
+	@Override
+	public double getMountedYOffset() {
+		return 0.75D;
+	}
+	
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
+		
+		if (!this.getPassengers().isEmpty()) {
+			this.setSize(3.0F, 3.0F);
+			
+			if (this.getPassengers().get(0).isSneaking()) {
+				this.getPassengers().get(0).setSneaking(false);
+			}
+		}
+		else {
+			this.setSize(2.5F, 2.5F);
+			
+		}
+		
+		if (!this.getPassengers().isEmpty()) {
+			this.getLookHelper().setLookPositionWithEntity(getPassengers().get(0), 100F, 100F);
+			
+			// push out of user in wall
+			Vec3d riderPos = this.getRiderPosition();
+			this.pushOutOfBlocks(riderPos.x, riderPos.y, riderPos.z);
+		}
+		
+		
 		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
 		
 		if (!this.world.isRemote && (this.getAttackTarget() == null || this.getAttackTarget().isDead)) {
@@ -162,5 +211,19 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	
 	protected void playStepSound(BlockPos pos, Block blockIn) {
 		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
+	}
+	
+	@Override
+	public void updatePassenger(Entity passenger) {
+		if (!this.getPassengers().isEmpty()) {
+			Vec3d riderPos = this.getRiderPosition();
+			
+			this.getPassengers().get(0).setPosition(riderPos.x, riderPos.y, riderPos.z);
+		}
+	}
+	
+	@Override
+	public boolean canRiderInteract() {
+		return true;
 	}
 }
