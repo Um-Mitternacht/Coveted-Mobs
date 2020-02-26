@@ -146,12 +146,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
 	}
 	
-	public void resetTask() {
-	}
-	
-	public void updateTask() {
-	}
-	
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
