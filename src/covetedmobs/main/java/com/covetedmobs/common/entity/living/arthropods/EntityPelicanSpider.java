@@ -83,20 +83,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
-		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
-	}
-	
-	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_SPIDER_AMBIENT;
-	}
-	
-	protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
-	}
-	
-	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.SPIDER_EYE;
 	}
@@ -116,6 +102,12 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		
 	}
 	
+	public void resetTask() {
+	}
+	
+	public void updateTask() {
+	}
+	
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
@@ -127,5 +119,19 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.0);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.1D);
+	}
+	
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
+	}
+	
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.ENTITY_SPIDER_AMBIENT;
+	}
+	
+	protected void playStepSound(BlockPos pos, Block blockIn) {
+		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
 	}
 }
