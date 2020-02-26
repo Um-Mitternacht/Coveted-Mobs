@@ -1,7 +1,6 @@
 package com.covetedmobs.common.entity.living.arthropods;
 
 import com.covetedmobs.CovetedMobs;
-import com.covetedmobs.common.entity.living.mammals.EntityOryx;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -89,32 +88,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-		compound.setBoolean("AttackSync", this.isAttackingFromServer());
-	}
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
-	}
-	
-	public boolean isAttackingFromServer() {
-		return this.dataManager.get(ATTACKING).booleanValue();
-	}
-	
-	public void setAttackingOnClient(boolean in) {
-		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.dataManager.register(ATTACKING, Boolean.valueOf(false));
-	}
-	
-	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.SPIDER_EYE;
 	}
@@ -134,12 +107,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		
 	}
 	
-	public void resetTask() {
-	}
-	
-	public void updateTask() {
-	}
-	
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
@@ -151,6 +118,38 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.0);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.1D);
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(ATTACKING, Boolean.valueOf(false));
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		compound.setBoolean("AttackSync", this.isAttackingFromServer());
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
+	}
+	
+	public boolean isAttackingFromServer() {
+		return this.dataManager.get(ATTACKING).booleanValue();
+	}
+	
+	public void setAttackingOnClient(boolean in) {
+		this.dataManager.set(ATTACKING, Boolean.valueOf(in));
+	}
+	
+	public void resetTask() {
+	}
+	
+	public void updateTask() {
 	}
 	
 	@Override
