@@ -227,6 +227,16 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
+	public boolean wearsArmor()
+	{
+		return false;
+	}
+	
+	public boolean isArmor(ItemStack stack)
+	{
+		return false;
+	}
+	
 	public int getGrazeTime() {
 		return this.dataManager.get(GRAZE_TIME).intValue();
 	}
