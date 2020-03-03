@@ -1,5 +1,6 @@
 package com.covetedmobs.client.model.entity.arthropods;
 
+import com.covetedmobs.common.entity.living.arthropods.EntityPelicanSpider;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -451,11 +452,26 @@ public class ModelPelicanSpider extends ModelBase {
 		this.LLeg2_III.rotateAngleY += -f5;
 		this.RLeg2_IV.rotateAngleY += f6;
 		this.LLeg2_IV.rotateAngleY += -f6;
+		
+		if (entityIn instanceof EntityPelicanSpider) {
+			EntityPelicanSpider spider = (EntityPelicanSpider) entityIn;
+			{
+				if (spider.isAttackingFromServer()) {
+					this.RFang1.rotateAngleX = - 0.81869712141416456F;
+					this.LFang1.rotateAngleX = - 0.81869712141416456F;
+				}
+				else {
+					this.RFang1.rotateAngleX = 0.27314402793711257F;
+					this.LFang1.rotateAngleX = 0.27314402793711257F;
+				}
+			}
+		}
 	}
+		
+		/**
+		 * This is a helper function from Tabula to set the rotation of model parts
+		 */
 	
-	/**
-	 * This is a helper function from Tabula to set the rotation of model parts
-	 */
 	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;

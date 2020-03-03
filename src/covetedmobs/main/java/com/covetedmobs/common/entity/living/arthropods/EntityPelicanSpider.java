@@ -42,6 +42,12 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
+	public void setAttackTarget(EntityLivingBase entitylivingbaseIn) {
+		this.setAttackingOnClient(entitylivingbaseIn != null);
+		super.setAttackTarget(entitylivingbaseIn);
+	}
+	
+	@Override
 	public boolean isPotionApplicable(PotionEffect effect) {
 		return effect.getPotion() != MobEffects.SLOWNESS && effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
 	}
@@ -170,7 +176,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	
 	@Override
 	public double getMountedYOffset() {
-		return 0.75D;
+		return 2.05D;
 	}
 	
 	@Override
