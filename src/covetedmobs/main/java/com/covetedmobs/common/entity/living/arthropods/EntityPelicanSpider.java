@@ -162,7 +162,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	
 	private Vec3d getRiderPosition() {
 		if (!this.getPassengers().isEmpty()) {
-			float distance = 0.9F;
+			float distance = 2.0F;
 			
 			double dx = Math.cos((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
 			double dz = Math.sin((this.rotationYaw + 90) * Math.PI / 180.0D) * distance;
@@ -176,7 +176,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	
 	@Override
 	public double getMountedYOffset() {
-		return 2.05D;
+		return 2.15D;
 	}
 	
 	@Override
