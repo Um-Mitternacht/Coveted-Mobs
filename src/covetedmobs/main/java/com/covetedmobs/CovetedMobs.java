@@ -44,7 +44,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = CovetedMobs.MODID, name = CovetedMobs.NAME, version = CovetedMobs.VERSION, guiFactory = CovetedMobs.GUI_FACTORY)
 public class CovetedMobs {
 	
-	public static final String MODID = "covetedmobs", NAME = "Coveted Mobs", VERSION = "1.0.0-testbuild5", GUI_FACTORY = "com.covetedmobs.client.gui.GuiFactory";
+	public static final String MODID = "covetedmobs", NAME = "Coveted Mobs", VERSION = "1.0.0-testbuild6", GUI_FACTORY = "com.covetedmobs.client.gui.GuiFactory";
 	public static final CreativeTabs tab = new CreativeTabs(CovetedMobs.MODID) {
 		@Override
 		public ItemStack createIcon() {
