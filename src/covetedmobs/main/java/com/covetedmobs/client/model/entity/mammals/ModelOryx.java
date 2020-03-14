@@ -293,6 +293,14 @@ public class ModelOryx extends ModelBase {
 		this.RightLegBack01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		this.LeftLegBack01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		
+		this.Neck.rotateAngleY = netHeadYaw * 0.015453292F;
+		if (flag) {
+			this.Neck.rotateAngleX = -((float) Math.PI / 4F);
+		}
+		else {
+			this.Neck.rotateAngleX = headPitch * 0.015453292F;
+		}
+		
 		if (entity instanceof EntityOryx) {
 			EntityOryx oryx = (EntityOryx) entity;
 			{
@@ -307,9 +315,11 @@ public class ModelOryx extends ModelBase {
 				float grazeTime = oryx.getGrazeTime();
 				if (grazeTime <= 80) {
 					this.Neck.rotateAngleX = - -0.91869712141416456F;
+					this.Head.rotateAngleX = - -0.25869712141416456F;
 				}
 				else {
-					this.Neck.rotateAngleX = 0F;
+					this.Neck.rotateAngleX = -0.36425021489121656F;
+					this.Head.rotateAngleX = 1.0927506446736497F;
 				}
 			}
 		}
