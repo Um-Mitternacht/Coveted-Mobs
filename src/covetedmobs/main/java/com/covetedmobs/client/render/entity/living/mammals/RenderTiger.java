@@ -8,6 +8,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.UUID;
+
 /**
  * Created by Joseph on 3/18/2020.
  */
@@ -21,14 +23,16 @@ public class RenderTiger extends RenderLiving<EntityTiger> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTiger entity) {
+		UUID id = entity.getUniqueID();
+		
 		return TEX;
 	}
 	
 	@Override
 	protected void preRenderCallback(EntityTiger entity, float partialTickTime) {
 		super.preRenderCallback(entity, partialTickTime);
-		if (entity.isChild()) GlStateManager.scale(0.3, 0.3, 0.3);
-		else GlStateManager.scale(1.2, 1.2, 1.2);
+		if (entity.isChild()) GlStateManager.scale(0.6, 0.6, 0.6);
+		else GlStateManager.scale(1.0, 1.0, 1.0);
 	}
 	
 }

@@ -14,6 +14,6 @@ public class EntityTiger extends ModEntityMob {
 	
 	@Override
 	protected boolean isValidLightLevel() {
-		return false;
+		return true;
 	}
 }
