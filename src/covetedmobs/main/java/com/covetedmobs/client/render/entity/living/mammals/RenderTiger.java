@@ -15,6 +15,12 @@ import java.util.UUID;
  */
 public class RenderTiger extends RenderLiving<EntityTiger> {
 	
+	public static int malteseChance;
+	public static int blackChance;
+	public static int whiteChance;
+	public static int goldenChance;
+	public static int normalChance;
+	
 	private static final ResourceLocation TEX = new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard");
 	
 	public RenderTiger(RenderManager manager) {
@@ -23,8 +29,6 @@ public class RenderTiger extends RenderLiving<EntityTiger> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTiger entity) {
-		UUID id = entity.getUniqueID();
-		
 		return TEX;
 	}
 	
