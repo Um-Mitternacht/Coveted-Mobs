@@ -227,13 +227,11 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
-	public boolean wearsArmor()
-	{
+	public boolean wearsArmor() {
 		return false;
 	}
 	
-	public boolean isArmor(ItemStack stack)
-	{
+	public boolean isArmor(ItemStack stack) {
 		return false;
 	}
 	

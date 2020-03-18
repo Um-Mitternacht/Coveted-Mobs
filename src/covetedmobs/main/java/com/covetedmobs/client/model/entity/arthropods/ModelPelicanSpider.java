@@ -457,8 +457,8 @@ public class ModelPelicanSpider extends ModelBase {
 			EntityPelicanSpider spider = (EntityPelicanSpider) entityIn;
 			{
 				if (spider.isAttackingFromServer()) {
-					this.RFang1.rotateAngleX = - 0.81869712141416456F;
-					this.LFang1.rotateAngleX = - 0.81869712141416456F;
+					this.RFang1.rotateAngleX = -0.81869712141416456F;
+					this.LFang1.rotateAngleX = -0.81869712141416456F;
 				}
 				else {
 					this.RFang1.rotateAngleX = 0.27314402793711257F;
@@ -467,10 +467,10 @@ public class ModelPelicanSpider extends ModelBase {
 			}
 		}
 	}
-		
-		/**
-		 * This is a helper function from Tabula to set the rotation of model parts
-		 */
+	
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
 	
 	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;

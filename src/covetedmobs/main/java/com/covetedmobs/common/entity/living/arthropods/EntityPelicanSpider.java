@@ -47,6 +47,10 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		super.setAttackTarget(entitylivingbaseIn);
 	}
 	
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.ENTITY_SPIDER_AMBIENT;
+	}
+	
 	@Override
 	public boolean isPotionApplicable(PotionEffect effect) {
 		return effect.getPotion() != MobEffects.SLOWNESS && effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
@@ -175,11 +179,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
-	public double getMountedYOffset() {
-		return 2.15D;
-	}
-	
-	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		
@@ -211,10 +210,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		}
 	}
 	
-	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_SPIDER_AMBIENT;
-	}
-	
 	protected void playStepSound(BlockPos pos, Block blockIn) {
 		this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
 	}
@@ -226,6 +221,11 @@ public class EntityPelicanSpider extends ModEntityTameable {
 			
 			this.getPassengers().get(0).setPosition(riderPos.x, riderPos.y, riderPos.z);
 		}
+	}
+	
+	@Override
+	public double getMountedYOffset() {
+		return 2.15D;
 	}
 	
 	@Override
