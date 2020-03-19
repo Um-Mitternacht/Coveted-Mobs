@@ -156,6 +156,11 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
 	}
 	
+	@Override
+	public int getMaxSpawnedInChunk() {
+		return 2;
+	}
+	
 	public boolean isAttackingFromServer() {
 		return this.dataManager.get(ATTACKING).booleanValue();
 	}
