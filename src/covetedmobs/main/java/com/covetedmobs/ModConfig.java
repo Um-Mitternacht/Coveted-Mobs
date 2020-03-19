@@ -21,6 +21,7 @@ public class ModConfig {
 		public final Elephant elephant = new Elephant();
 		public final Oryx oryx = new Oryx();
 		public final PelicanSpider pelicanspider = new PelicanSpider();
+		public final Tiger tiger = new Tiger();
 		
 		public static class Blindworm {
 			@Config.Comment("The list of BiomeDictionary types that the blindworm will spawn in.")
@@ -71,6 +72,23 @@ public class ModConfig {
 			@Config.Comment("The maximum amount of elephants to spawn at once.")
 			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
 			public int elephantMax = 6;
+		}
+		
+		public static class Tiger {
+			@Config.Comment("The list of BiomeDictionary types that the tiger will spawn in.")
+			public String[] tigerBiomes = {BiomeDictionary.Type.SANDY.getName(), BiomeDictionary.Type.JUNGLE.getName(), BiomeDictionary.Type.CONIFEROUS.getName()};
+			
+			@Config.Comment("The weight chance for tigers to spawn.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int tigerWeight = 6;
+			
+			@Config.Comment("The minimum amount of tigers to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int tigerMin = 0;
+			
+			@Config.Comment("The maximum amount of tigers to spawn at once.")
+			@Config.RangeInt(min = 0, max = Byte.MAX_VALUE)
+			public int tigerMax = 2;
 		}
 		
 		public static class Oryx {

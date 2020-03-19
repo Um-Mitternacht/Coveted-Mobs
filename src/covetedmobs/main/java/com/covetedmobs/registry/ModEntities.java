@@ -11,6 +11,7 @@ import com.covetedmobs.common.entity.living.herps.EntityBlindworm;
 import com.covetedmobs.common.entity.living.herps.EntityNewt;
 import com.covetedmobs.common.entity.living.mammals.EntityElephant;
 import com.covetedmobs.common.entity.living.mammals.EntityOryx;
+import com.covetedmobs.common.entity.living.mammals.EntityTiger;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
@@ -34,6 +35,9 @@ public class ModEntities {
 	public static final EntityEntry elephant = createEntityEntry(EntityElephant.class, "elephant", 0xC0C0C0, 0x555555, EnumCreatureType.CREATURE, ModConfig.mobSpawns.elephant.elephantWeight, ModConfig.mobSpawns.elephant.elephantMin, ModConfig.mobSpawns.elephant.elephantMax, Arrays.asList(ModConfig.mobSpawns.elephant.elephantBiomes));
 	public static final EntityEntry oryx = createEntityEntry(EntityOryx.class, "oryx", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.oryx.oryxWeight, ModConfig.mobSpawns.oryx.oryxMin, ModConfig.mobSpawns.oryx.oryxMax, Arrays.asList(ModConfig.mobSpawns.oryx.oryxBiomes));
 	public static final EntityEntry pelicanspider = createEntityEntry(EntityPelicanSpider.class, "pelicanspider", 0x9F8170, 0xDAA520, EnumCreatureType.CREATURE, ModConfig.mobSpawns.pelicanspider.pelicanspiderWeight, ModConfig.mobSpawns.pelicanspider.pelicanspiderMin, ModConfig.mobSpawns.pelicanspider.pelicanspiderMax, Arrays.asList(ModConfig.mobSpawns.pelicanspider.pelicanspiderBiomes));
+	public static final EntityEntry tiger = createEntityEntry(EntityTiger.class, "tiger", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.tiger.tigerWeight, ModConfig.mobSpawns.tiger.tigerMin, ModConfig.mobSpawns.tiger.tigerMax, Arrays.asList(ModConfig.mobSpawns.tiger.tigerBiomes));
+	
+	
 	
 	private static EntityEntry createEntityEntry(Class<? extends Entity> clazz, String name) {
 		return EntityEntryBuilder.create().entity(clazz).id(new ResourceLocation(CovetedMobs.MODID, name), entity_id++).name(CovetedMobs.MODID + "." + name).tracker(128, 1, true).build();

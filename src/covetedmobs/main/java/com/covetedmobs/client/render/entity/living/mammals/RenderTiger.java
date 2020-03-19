@@ -3,6 +3,8 @@ package com.covetedmobs.client.render.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.client.model.entity.mammals.ModelTiger;
 import com.covetedmobs.common.entity.living.mammals.EntityTiger;
+import com.covetedmobs.common.entity.util.ModEntityAnimal;
+import com.covetedmobs.common.entity.util.ModEntityMob;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -15,13 +17,8 @@ import java.util.UUID;
  */
 public class RenderTiger extends RenderLiving<EntityTiger> {
 	
-	public static int malteseChance;
-	public static int blackChance;
-	public static int whiteChance;
-	public static int goldenChance;
-	public static int normalChance;
 	
-	private static final ResourceLocation TEX = new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard");
+	private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_maltese.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_white.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_melanistic.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_golden.png")};
 	
 	public RenderTiger(RenderManager manager) {
 		super(manager, new ModelTiger(), 0.1f);
@@ -29,7 +26,7 @@ public class RenderTiger extends RenderLiving<EntityTiger> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTiger entity) {
-		return TEX;
+		return TEX[entity.getDataManager().get(ModEntityMob.SKIN)];
 	}
 	
 	@Override
