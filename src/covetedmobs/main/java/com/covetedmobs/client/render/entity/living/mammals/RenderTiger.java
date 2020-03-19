@@ -3,14 +3,11 @@ package com.covetedmobs.client.render.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.client.model.entity.mammals.ModelTiger;
 import com.covetedmobs.common.entity.living.mammals.EntityTiger;
-import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import com.covetedmobs.common.entity.util.ModEntityMob;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-
-import java.util.UUID;
 
 /**
  * Created by Joseph on 3/18/2020.
@@ -18,7 +15,7 @@ import java.util.UUID;
 public class RenderTiger extends RenderLiving<EntityTiger> {
 	
 	
-	private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_maltese.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_white.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_melanistic.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_golden.png")};
+	private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_standard.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_maltese.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_white.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_melanistic.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/tigers/tiger_golden.png")};
 	
 	public RenderTiger(RenderManager manager) {
 		super(manager, new ModelTiger(), 0.1f);

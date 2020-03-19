@@ -25,6 +25,6 @@ public class EntityTiger extends ModEntityMob {
 	
 	@Override
 	protected int getSkinTypes() {
-		return 5;
+		return 8;
 	}
 }
