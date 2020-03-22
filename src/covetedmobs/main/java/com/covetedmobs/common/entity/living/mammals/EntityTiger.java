@@ -15,11 +15,6 @@ public class EntityTiger extends ModEntityMob {
 	}
 	
 	@Override
-	protected boolean isValidLightLevel() {
-		return true;
-	}
-	
-	@Override
 	public int getMaxSpawnedInChunk() {
 		return 2;
 	}
@@ -27,7 +22,6 @@ public class EntityTiger extends ModEntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.5);
 		getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40);
@@ -38,5 +32,10 @@ public class EntityTiger extends ModEntityMob {
 	@Override
 	protected int getSkinTypes() {
 		return 8;
+	}
+	
+	@Override
+	protected boolean isValidLightLevel() {
+		return true;
 	}
 }

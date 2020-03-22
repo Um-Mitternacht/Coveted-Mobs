@@ -52,6 +52,11 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	}
 	
 	@Override
+	public int getMaxSpawnedInChunk() {
+		return 2;
+	}
+	
+	@Override
 	public boolean isPotionApplicable(PotionEffect effect) {
 		return effect.getPotion() != MobEffects.SLOWNESS && effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
 	}
@@ -154,11 +159,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
-	}
-	
-	@Override
-	public int getMaxSpawnedInChunk() {
-		return 2;
 	}
 	
 	public boolean isAttackingFromServer() {

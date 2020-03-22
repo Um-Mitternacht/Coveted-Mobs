@@ -38,7 +38,6 @@ public class ModEntities {
 	public static final EntityEntry tiger = createEntityEntry(EntityTiger.class, "tiger", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.tiger.tigerWeight, ModConfig.mobSpawns.tiger.tigerMin, ModConfig.mobSpawns.tiger.tigerMax, Arrays.asList(ModConfig.mobSpawns.tiger.tigerBiomes));
 	
 	
-	
 	private static EntityEntry createEntityEntry(Class<? extends Entity> clazz, String name) {
 		return EntityEntryBuilder.create().entity(clazz).id(new ResourceLocation(CovetedMobs.MODID, name), entity_id++).name(CovetedMobs.MODID + "." + name).tracker(128, 1, true).build();
 	}
