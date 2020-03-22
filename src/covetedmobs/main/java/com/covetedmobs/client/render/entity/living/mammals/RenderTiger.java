@@ -3,7 +3,7 @@ package com.covetedmobs.client.render.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.client.model.entity.mammals.ModelTiger;
 import com.covetedmobs.common.entity.living.mammals.EntityTiger;
-import com.covetedmobs.common.entity.util.ModEntityMob;
+import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -23,7 +23,7 @@ public class RenderTiger extends RenderLiving<EntityTiger> {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTiger entity) {
-		return TEX[entity.getDataManager().get(ModEntityMob.SKIN)];
+		return TEX[entity.getDataManager().get(ModEntityAnimal.SKIN)];
 	}
 	
 	@Override
