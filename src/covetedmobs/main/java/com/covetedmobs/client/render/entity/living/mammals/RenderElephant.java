@@ -13,6 +13,9 @@ import net.minecraft.util.ResourceLocation;
  * Created by Joseph on 12/1/2019.
  */
 public class RenderElephant extends RenderLiving<EntityElephant> {
+	
+	private static final ResourceLocation AFRICAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/african_elephant.png");
+	private static final ResourceLocation ASIAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/asian_elephant.png");
 	private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/african_elephant.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/asian_elephant.png")};
 	
 	public RenderElephant(RenderManager manager) {
