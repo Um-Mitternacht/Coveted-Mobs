@@ -10,6 +10,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +25,9 @@ import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -36,6 +39,8 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> TUSK_SWORDED = EntityDataManager.createKey(EntityElephant.class, DataSerializers.VARINT);
+	private static final ResourceLocation AFRICAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/african_elephant.png");
+	private static final ResourceLocation ASIAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/asian_elephant.png");
 	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
@@ -121,6 +126,20 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(0.7);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9D);
+	}
+	
+	@Override
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data) {
+		BlockPos pos = getPosition();
+		World world = getEntityWorld();
+		
+		if (this.world.getBiomeForCoordsBody(pos, world.getBiome(BiomeDictionary.Type.SAVANNA))) {
+			return (IEntityLivingData) AFRICAN;
+		}
+		else if (this.world.getBiomeForCoordsBody(pos, world.getBiome(BiomeDictionary.Type.JUNGLE))) {
+			return (IEntityLivingData) ASIAN;
+		}
+		return data;
 	}
 	
 	@Override
