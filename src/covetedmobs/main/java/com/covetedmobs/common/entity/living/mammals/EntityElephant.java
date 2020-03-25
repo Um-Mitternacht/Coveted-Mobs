@@ -32,6 +32,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+import static net.minecraftforge.common.BiomeDictionary.*;
+
 /**
  * Created by Joseph on 12/1/2019.
  */
@@ -133,10 +135,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		BlockPos pos = getPosition();
 		World world = getEntityWorld();
 		
-		if (this.world.getBiomeForCoordsBody(pos, world.getBiome(BiomeDictionary.Type.SAVANNA))) {
+		if (this.world.getBiomeForCoordsBody(pos, world.getBiome(Type.SAVANNA))) {
 			return (IEntityLivingData) AFRICAN;
 		}
-		else if (this.world.getBiomeForCoordsBody(pos, world.getBiome(BiomeDictionary.Type.JUNGLE))) {
+		else if (this.world.getBiomeForCoordsBody(pos, world.getBiome(Type.JUNGLE))) {
 			return (IEntityLivingData) ASIAN;
 		}
 		return data;
