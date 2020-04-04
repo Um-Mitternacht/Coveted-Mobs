@@ -32,7 +32,7 @@ public class EntityNewt extends ModEntityAnimal {
 	
 	@Override
 	protected boolean canDespawn() {
-		return true;
+		return !hasCustomName();
 	}
 	
 	@Override
