@@ -15,9 +15,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -28,12 +28,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-import static net.minecraftforge.common.BiomeDictionary.*;
+import static net.minecraftforge.common.BiomeDictionary.Type;
 
 /**
  * Created by Joseph on 12/1/2019.
@@ -42,8 +43,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> TUSK_SWORDED = EntityDataManager.createKey(EntityElephant.class, DataSerializers.VARINT);
-	private static final ResourceLocation AFRICAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/african_elephant.png");
-	private static final ResourceLocation ASIAN = new ResourceLocation(CovetedMobs.MODID, "textures/entity/elephants/asian_elephant.png");
+	private static final DataParameter<Integer> ELEPHANT_TYPE = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	
 	protected EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
@@ -131,29 +131,46 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9D);
 	}
 	
+	@Nullable
 	@Override
-	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData data) {
-		BlockPos pos = getPosition();
-		World world = getEntityWorld();
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+		livingdata = super.onInitialSpawn(difficulty, livingdata);
+		int i = this.getRandomElephantType();
+		boolean flag = false;
 		
-		if (this.world.getBiomeForCoordsBody(pos, world.getBiome(Type.SAVANNA))) {
-			return (IEntityLivingData) AFRICAN;
+		if (livingdata instanceof EntityElephant.ElephantTypeData) {
+			i = ((EntityElephant.ElephantTypeData) livingdata).typeData;
+			flag = true;
 		}
-		else if (this.world.getBiomeForCoordsBody(pos, world.getBiome(Type.JUNGLE))) {
-			return (IEntityLivingData) ASIAN;
+		else {
+			livingdata = new EntityElephant.ElephantTypeData(i);
 		}
-		return data;
+		
+		this.setElephantType(i);
+		
+		return livingdata;
 	}
 	
 	@Override
 	protected void entityInit() {
 		super.entityInit();
+		this.dataManager.register(ELEPHANT_TYPE, Integer.valueOf(0));
 		this.dataManager.register(GRAZE_TIME, Integer.valueOf(0));
 	}
 	
-	@Override
-	protected int getSkinTypes() {
-		return 2;
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		compound.setInteger("ElephantType", this.getElephantType());
+		//	compound.setInteger("Tusksworded", this.getTuskSword());
+		//
+		//	if (this.getOwnerUniqueId() != null) {
+		//		compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
+		//	}
+	}
+	
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setElephantType(compound.getInteger("ElephantType"));
 	}
 	
 	//Credit to its_meow for the code used in this section, as it was used in the moose to destroy blocks.
@@ -219,14 +236,21 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		blockpos$pooledmutableblockpos2.release();
 	}
 	
-	//public void writeEntityToNBT(NBTTagCompound compound) {
-	//	super.writeEntityToNBT(compound);
-	//	compound.setInteger("Tusksworded", this.getTuskSword());
-	//
-	//	if (this.getOwnerUniqueId() != null) {
-	//		compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
-	//	}
-	//}
+	private int getRandomElephantType() {
+		boolean flag = rand.nextBoolean();
+		Biome biome = world.getBiome(getPosition());
+		if (BiomeDictionary.hasType(biome, Type.SAVANNA)) return 0;
+		else if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) return 1;
+		else return flag ? 0 : 1;
+	}
+	
+	public int getElephantType() {
+		return ((Integer) this.dataManager.get(ELEPHANT_TYPE)).intValue();
+	}
+	
+	public void setElephantType(int elephantTypeId) {
+		this.dataManager.set(ELEPHANT_TYPE, Integer.valueOf(elephantTypeId));
+	}
 	
 	private int getNewGraze() {
 		return this.rand.nextInt(2000) + 80;
@@ -278,6 +302,14 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	public void setOwnerUniqueId(@Nullable UUID uniqueId) {
 		this.dataManager.set(OWNER_UNIQUE_ID, Optional.fromNullable(uniqueId));
+	}
+	
+	public static class ElephantTypeData implements IEntityLivingData {
+		public int typeData;
+		
+		public ElephantTypeData(int type) {
+			this.typeData = type;
+		}
 	}
 	
 }
