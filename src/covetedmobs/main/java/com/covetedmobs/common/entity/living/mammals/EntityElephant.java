@@ -8,10 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -171,6 +168,18 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		this.setElephantType(compound.getInteger("ElephantType"));
+	}
+	
+	public void geneticAttributes(EntityAgeable ageable, EntityElephant elephant) {
+		double geneOne = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
+		double geneTwo = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+		double geneThree = this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getBaseValue();
+		double geneFour = this.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
+	}
+	
+	@Override
+	public EntityAgeable createChild(EntityAgeable other) {
+		return super.createChild(other);
 	}
 	
 	//Credit to its_meow for the code used in this section, as it was used in the moose to destroy blocks.
