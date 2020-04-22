@@ -258,7 +258,7 @@ public class ModelTiger extends ModelBase {
 		this.lArm1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - -0.33F;
 		this.rArm1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - -0.33f;
 		this.lLeg1.rotateAngleX = MathHelper.sin(limbSwing * 0.18203784098300857F) * swingModifier * limbSwingAmount - 0.16F;
-		this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount -0.16f;
+		this.rLeg1.rotateAngleX = MathHelper.cos(limbSwing * 0.18203784098300857F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.16f;
 	}
 	
 	/**
