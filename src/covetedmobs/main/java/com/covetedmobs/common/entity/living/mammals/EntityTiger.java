@@ -5,6 +5,10 @@ import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.AbstractIllager;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -38,7 +42,8 @@ public class EntityTiger extends ModEntityAnimal {
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, false, (Class<?>) null));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, false));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, false));
+		targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 10, false, false, e -> e instanceof EntityVillager || e instanceof AbstractIllager || e instanceof EntityWitch || e instanceof EntityIronGolem || e instanceof EntitySheep || e instanceof EntityCow || e instanceof EntityChicken || e instanceof EntityLlama || e instanceof EntityPig || e instanceof EntityRabbit || e instanceof AbstractHorse || e instanceof EntityOryx || e instanceof EntityWolf || e.getClass().getName().endsWith("EntityDeer") || e.getClass().getName().endsWith("EntityReindeer") || e.getClass().getName().endsWith("EntityMoose") || e.getClass().getName().endsWith("EntityGoat") || e.getClass().getName().endsWith("EntityBear") || e.getClass().getName().endsWith("EntityBearNeutral") || e.getClass().getName().endsWith("EntityBoar")));
 	}
 	
 	@Override
