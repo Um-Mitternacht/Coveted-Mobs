@@ -24,7 +24,7 @@ public class EntityOryx extends ModEntityAnimal {
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityOryx.class, DataSerializers.VARINT);
 	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityOryx.class, DataSerializers.BOOLEAN);
 	
-	protected EntityOryx(World world) {
+	public EntityOryx(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/oryx"));
 		setSize(1.6f, 2.3f);
 		this.setGrazeTime(this.getNewGraze());

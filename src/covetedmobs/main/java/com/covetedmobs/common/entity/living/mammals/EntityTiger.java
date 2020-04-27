@@ -18,7 +18,7 @@ import net.minecraft.world.World;
  * Created by Joseph on 3/18/2020.
  */
 public class EntityTiger extends ModEntityMob {
-	protected EntityTiger(World world) {
+	public EntityTiger(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/tiger"));
 		setSize(2.3f, 2.9f);
 	}
