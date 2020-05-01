@@ -47,7 +47,7 @@ public class EntityTiger extends ModEntityMob {
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
 		tasks.addTask(3, new EntityAIWander(this, getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() * (2 / 3d)));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
-		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, false, (Class<?>) null));
+		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, false));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
 		targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, false));
 		targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 10, false, false, e -> e instanceof EntityVillager || e instanceof AbstractIllager || e instanceof EntityWitch || e instanceof EntityIronGolem || e instanceof EntitySheep || e instanceof EntityPlayer || e instanceof EntityCow || e instanceof EntityChicken || e instanceof EntityLlama || e instanceof EntityPig || e instanceof EntityRabbit || e instanceof AbstractHorse || e instanceof EntityOryx || e instanceof EntityWolf || e.getClass().getName().endsWith("EntityDeer") || e.getClass().getName().endsWith("EntityReindeer") || e.getClass().getName().endsWith("EntityMoose") || e.getClass().getName().endsWith("EntityGoat") || e.getClass().getName().endsWith("EntityBear") || e.getClass().getName().endsWith("EntityBearNeutral") || e.getClass().getName().endsWith("EntityBoar")));

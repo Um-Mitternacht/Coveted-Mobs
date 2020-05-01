@@ -123,7 +123,7 @@ public class EntityOryx extends ModEntityAnimal {
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true, (Class<?>) null));
+		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
 	}
 	

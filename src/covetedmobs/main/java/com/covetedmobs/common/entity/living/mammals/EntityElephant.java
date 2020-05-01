@@ -77,9 +77,13 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	
 	public void geneticAttributes(EntityAgeable ageable, EntityElephant elephant) {
 		double geneOne = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
+		elephant.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(geneOne / 3.0D);
 		double geneTwo = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+		elephant.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(geneTwo / 3.0D);
 		double geneThree = this.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).getBaseValue();
+		elephant.getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(geneThree / 3.0D);
 		double geneFour = this.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue() + ageable.getEntityAttribute(SharedMonsterAttributes.ARMOR).getBaseValue();
+		elephant.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(geneFour / 3.0D);
 	}
 	
 	@Override
@@ -122,7 +126,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAITargetNonTamed<>(this, EntityPlayer.class, false, p -> p.getDistanceSq(this) < 1));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
 	}
