@@ -1,20 +1,20 @@
 ﻿#ENTITY
 entity.covetedmobs.blindworm.name=Blindworm
 entity.covetedmobs.newt.name=Newt
-entity.covetedmobs.elephant.name=Elephant
+entity.covetedmobs.elephant.name=Elephant (WIP)
 entity.covetedmobs.oryx.name=Oryx
 entity.covetedmobs.pelicanspider.name=Pelican Spider
-entity.covetedmobs.tiger.name=Tiger
+entity.covetedmobs.tiger.name=Tiger (WIP)
 
 #ITEMS
-item.covetedmobs.diamond_tusk_sword.name=Diamond Tusk Sword
-item.covetedmobs.gold_tusk_sword.name=Gold Tusk Sword
-item.covetedmobs.iron_tusk_sword.name=Iron Tusk Sword
-item.covetedmobs.howdah.name=Howdah
-item.covetedmobs.elephant_garment.name=Elephant Garment
+item.covetedmobs.diamond_tusk_sword.name=Diamond Tusk Sword (WIP)
+item.covetedmobs.gold_tusk_sword.name=Gold Tusk Sword (WIP)
+item.covetedmobs.iron_tusk_sword.name=Iron Tusk Sword (WIP)
+item.covetedmobs.howdah.name=Howdah (WIP)
+item.covetedmobs.elephant_garment.name=Elephant Garment (WIP)
 item.covetedmobs.eye_of_newt.name=Eye of Newt
 item.covetedmobs.blindworms_sting.name=Blindworm's Sting
-item.covetedmobs.elephant_skull.name=Elephant Skull
+item.covetedmobs.elephant_skull.name=Elephant Skull (WIP)
 
 #TABS
-itemGroup.covetedmobs=Coveted Mobs
+itemGroup.covetedmobs=Coveted Mobs (WIP)

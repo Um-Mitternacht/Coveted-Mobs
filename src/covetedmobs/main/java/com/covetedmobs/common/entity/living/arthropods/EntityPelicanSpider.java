@@ -2,6 +2,7 @@ package com.covetedmobs.common.entity.living.arthropods;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameable;
+import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +15,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -27,6 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.Set;
+
 /**
  * Created by Joseph on 1/30/2020.
  */
@@ -35,6 +39,7 @@ import net.minecraft.world.World;
 public class EntityPelicanSpider extends ModEntityTameable {
 	
 	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityPelicanSpider.class, DataSerializers.BOOLEAN);
+	private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.SPIDER_EYE, Items.FERMENTED_SPIDER_EYE);
 	
 	public EntityPelicanSpider(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/pelican_spider"), Items.SPIDER_EYE, Items.FERMENTED_SPIDER_EYE);
@@ -123,8 +128,11 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		tasks.addTask(1, aiSit);
+		this.tasks.addTask(3, new EntityAITempt(this, 1.0D, false, TEMPTATION_ITEMS));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
+		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(3, new EntityAITargetNonTamed<>(this, EntityLivingBase.class, true, e -> e instanceof EntitySpider));
 		this.targetTasks.addTask(2, new EntityAITargetNonTamed<>(this, EntityPlayer.class, false, p -> p.getDistanceSq(this) < 1));
 		
@@ -159,6 +167,13 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		this.setAttackingOnClient(compound.getBoolean("AttackSync"));
+	}
+	
+	@Override
+	protected void boostHealth(boolean tamed) {
+		if (tamed) getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35);
+		if (tamed) getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4);
+		else getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
 	}
 	
 	public boolean isAttackingFromServer() {

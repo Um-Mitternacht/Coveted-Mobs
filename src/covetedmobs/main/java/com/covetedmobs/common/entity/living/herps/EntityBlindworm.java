@@ -15,7 +15,7 @@ import net.minecraft.world.World;
  */
 public class EntityBlindworm extends ModEntityAnimal {
 	public EntityBlindworm(World world) {
-		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/blindworm/blindworm"));
+		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/blindworm"));
 		setSize(1, 0.3f);
 	}
 	

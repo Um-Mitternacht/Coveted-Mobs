@@ -1,7 +1,6 @@
 package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
-import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import com.covetedmobs.common.entity.util.ModEntityMob;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -24,11 +23,6 @@ public class EntityTiger extends ModEntityMob {
 	}
 	
 	@Override
-	protected void entityInit() {
-		super.entityInit();
-	}
-	
-	@Override
 	protected int getSkinTypes() {
 		return 8;
 	}
@@ -36,6 +30,11 @@ public class EntityTiger extends ModEntityMob {
 	@Override
 	protected boolean isValidLightLevel() {
 		return true;
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
 	}
 	
 	@Override
@@ -54,6 +53,11 @@ public class EntityTiger extends ModEntityMob {
 	}
 	
 	@Override
+	public int getMaxSpawnedInChunk() {
+		return 2;
+	}
+	
+	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.5);
@@ -61,10 +65,5 @@ public class EntityTiger extends ModEntityMob {
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.3D);
-	}
-	
-	@Override
-	public int getMaxSpawnedInChunk() {
-		return 2;
 	}
 }

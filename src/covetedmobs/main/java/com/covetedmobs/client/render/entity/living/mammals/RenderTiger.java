@@ -3,7 +3,6 @@ package com.covetedmobs.client.render.entity.living.mammals;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.client.model.entity.mammals.ModelTiger;
 import com.covetedmobs.common.entity.living.mammals.EntityTiger;
-import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import com.covetedmobs.common.entity.util.ModEntityMob;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;

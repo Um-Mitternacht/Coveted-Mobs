@@ -126,6 +126,8 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
+		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAITargetNonTamed<>(this, EntityPlayer.class, false, p -> p.getDistanceSq(this) < 1));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue(), false));
@@ -184,6 +186,13 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		this.setElephantType(compound.getInteger("ElephantType"));
+	}
+	
+	@Override
+	protected void boostHealth(boolean tamed) {
+		if (tamed) getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(65);
+		if (tamed) getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(3);
+		else getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
 	}
 	
 	//Credit to its_meow for the code used in this section, as it was used in the moose to destroy blocks.
