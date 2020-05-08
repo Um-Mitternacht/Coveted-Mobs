@@ -1,7 +1,5 @@
 package com.covetedmobs.client;
 
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.registry.ModRegistries;
 import net.minecraft.block.Block;
@@ -12,6 +10,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;

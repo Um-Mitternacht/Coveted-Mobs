@@ -1,6 +1,5 @@
 package com.covetedmobs.proxy;
 
-import baubles.api.BaublesApi;
 import com.covetedmobs.CovetedMobs;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.block.Block;

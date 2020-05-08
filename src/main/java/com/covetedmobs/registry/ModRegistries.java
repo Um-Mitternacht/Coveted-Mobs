@@ -49,7 +49,7 @@ public class ModRegistries {
 	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
+	
 	}
 	
 	@SubscribeEvent
