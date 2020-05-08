@@ -12,7 +12,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
@@ -118,14 +117,6 @@ public class Util {
 	
 	public static boolean canMerge(ItemStack stack0, ItemStack stack1) {
 		return stack0.isEmpty() || (OreDictionary.itemMatches(stack0, stack1, true) && stack0.getCount() + stack1.getCount() <= stack0.getMaxStackSize());
-	}
-	
-	public static boolean hasBauble(EntityLivingBase living, IBauble item) {
-		if (living instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) living;
-			for (int i = 0; i < BaublesApi.getBaublesHandler(player).getSlots(); i++) if (BaublesApi.getBaublesHandler(player).getStackInSlot(i).getItem() == item) return true;
-		}
-		return false;
 	}
 	
 	public static boolean isRelated(boolean armor, Item item, String... names) {

@@ -14,12 +14,10 @@
 	"logoFile": "",
 	"screenshots": [],
 	"requiredMods": [
-	  "forge",
-	  "baubles"
+	  "forge"
 	],
 	"dependencies": [
-	  "forge",
-	  "baubles"
+	  "forge"
 	],
 	"useDependencyInformation": true
   }
