@@ -1,6 +1,7 @@
 package com.covetedmobs.registry;
 
 import com.covetedmobs.client.Util;
+import com.covetedmobs.common.item.ItemBushMeatCooked;
 import com.covetedmobs.common.item.ItemBushMeatRaw;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -22,6 +23,7 @@ public class ModObjects {
 	public static final Item blindworms_sting = Util.registerItem("blindworms_sting", "blindwormsSting");
 	public static final Item elephant_skull = Util.registerItem("elephant_skull");
 	public static final ItemFood bushmeat_raw = new ItemBushMeatRaw();
+	public static final ItemFood bushmeat_cooked = new ItemBushMeatCooked();
 	
 	public static void preInit() {
 	}
