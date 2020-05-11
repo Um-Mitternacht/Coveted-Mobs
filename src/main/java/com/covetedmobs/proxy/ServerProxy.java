@@ -26,14 +26,6 @@ public class ServerProxy {
 		return fin;
 	}
 	
-	public boolean doesPlayerHaveAdvancement(EntityPlayer player, ResourceLocation name) {
-		if (player instanceof EntityPlayerMP) {
-			Advancement advancement = ((EntityPlayerMP) player).getServerWorld().getAdvancementManager().getAdvancement(new ResourceLocation(CovetedMobs.MODID, "crafted_altar"));
-			return advancement != null && ((EntityPlayerMP) player).getAdvancements().getProgress(advancement).isDone();
-		}
-		return false;
-	}
-	
 	public boolean isFancyGraphicsEnabled() {
 		return false;
 	}
