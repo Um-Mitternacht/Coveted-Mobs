@@ -18,8 +18,8 @@ public class ModObjects {
 	public static final Item elephant_garment = Util.registerItem("elephant_garment");
 	
 	//Drops
-	public static final Item eye_of_newt = Util.registerItem("eye_of_newt");
-	public static final Item blindworms_sting = Util.registerItem("blindworms_sting");
+	public static final Item eye_of_newt = Util.registerItem("eye_of_newt", "eyeOfNewt");
+	public static final Item blindworms_sting = Util.registerItem("blindworms_sting", "blindwormsSting");
 	public static final Item elephant_skull = Util.registerItem("elephant_skull");
 	public static final ItemFood bushmeat_raw = new ItemBushMeatRaw();
 	
