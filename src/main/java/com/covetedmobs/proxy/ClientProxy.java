@@ -61,18 +61,6 @@ public class ClientProxy extends ServerProxy {
 		return super.getEntireInventory(Minecraft.getMinecraft().player);
 	}
 	
-	public boolean doesPlayerHaveAdvancement(EntityPlayer player, ResourceLocation name) {
-		if (player instanceof EntityPlayerSP) {
-			ClientAdvancementManager manager = ((EntityPlayerSP) player).connection.getAdvancementManager();
-			Advancement adv = manager.getAdvancementList().getAdvancement(name);
-			if (adv != null) {
-				AdvancementProgress progress = ObfuscationReflectionHelper.getPrivateValue(ClientAdvancementManager.class, manager, "advancementToProgress", "field_192803_d");
-				return progress != null && progress.isDone();
-			}
-		}
-		return super.doesPlayerHaveAdvancement(player, name);
-	}
-	
 	@Override
 	public boolean isFancyGraphicsEnabled() {
 		return Minecraft.getMinecraft().gameSettings.fancyGraphics;

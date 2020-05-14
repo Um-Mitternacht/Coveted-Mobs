@@ -16,6 +16,7 @@ item.covetedmobs.eye_of_newt.name=Eye of Newt
 item.covetedmobs.blindworms_sting.name=Blindworm's Sting
 item.covetedmobs.elephant_skull.name=Elephant Skull (WIP)
 item.covetedmobs.bushmeat_raw.name=Raw Bushmeat
+item.covetedmobs.bushmeat_cooked.name=Cooked Bushmeat
 
 #TABS
 itemGroup.covetedmobs=Coveted Mobs (WIP)

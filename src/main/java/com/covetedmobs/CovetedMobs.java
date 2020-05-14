@@ -27,6 +27,7 @@ import com.covetedmobs.client.handler.ClientHandler;
 import com.covetedmobs.common.handler.GuiHandler;
 import com.covetedmobs.proxy.ServerProxy;
 import com.covetedmobs.registry.ModObjects;
+import com.covetedmobs.registry.ModRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -77,5 +78,6 @@ public class CovetedMobs {
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRendersInit();
 		int id = -1;
+		ModRecipes.init();
 	}
 }
