@@ -317,6 +317,11 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
 	}
 	
+	public boolean canBePushed()
+	{
+		return !this.isBeingRidden();
+	}
+	
 	@Nullable
 	public UUID getOwnerUniqueId() {
 		return (UUID) ((Optional) this.dataManager.get(OWNER_UNIQUE_ID)).orNull();
