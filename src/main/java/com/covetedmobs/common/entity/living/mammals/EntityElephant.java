@@ -39,30 +39,12 @@ import static net.minecraftforge.common.BiomeDictionary.Type;
 public class EntityElephant extends ModEntityTameableGrazer {
 	
 	protected static final DataParameter<Integer> GRAZE_TIME = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
-	private static final DataParameter<Integer> TUSK_SWORDED = EntityDataManager.createKey(EntityElephant.class, DataSerializers.VARINT);
 	private static final DataParameter<Integer> ELEPHANT_TYPE = EntityDataManager.<Integer>createKey(EntityElephant.class, DataSerializers.VARINT);
 	
 	public EntityElephant(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/elephant"), Items.CAKE, Items.GOLDEN_APPLE, Items.PUMPKIN_PIE, Items.GOLDEN_CARROT, Items.SPECKLED_MELON, Items.MELON, Items.APPLE);
 		setSize(2.3f, 2.9f);
 		this.setGrazeTime(this.getNewGraze());
-	}
-	
-	public int getTuskSword() {
-		return Integer.valueOf(this.dataManager.get(TUSK_SWORDED).intValue());
-	}
-	
-	public int getIntFromArmor(ItemStack stack) {
-		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.iron_tusk_sword) {
-			return 1;
-		}
-		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.gold_tusk_sword) {
-			return 2;
-		}
-		if (!stack.isEmpty() && stack.getItem() != null && stack.getItem() == ModObjects.diamond_tusk_sword) {
-			return 3;
-		}
-		return 0;
 	}
 	
 	public boolean attackEntityAsMob(Entity entityIn) {
@@ -176,11 +158,6 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 		compound.setInteger("ElephantType", this.getElephantType());
-		//	compound.setInteger("Tusksworded", this.getTuskSword());
-		//
-		//	if (this.getOwnerUniqueId() != null) {
-		//		compound.setString("OwnerUUID", this.getOwnerUniqueId().toString());
-		//	}
 	}
 	
 	public void readEntityFromNBT(NBTTagCompound compound) {
@@ -295,11 +272,13 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
-	public boolean wearsArmor() {
+	public boolean wearsArmor()
+	{
 		return false;
 	}
 	
-	public boolean isArmor(ItemStack stack) {
+	public boolean isArmor(ItemStack stack)
+	{
 		return false;
 	}
 	
@@ -321,6 +300,18 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	{
 		return !this.isBeingRidden();
 	}
+	
+	public boolean canBeSaddled()
+	{
+		return true;
+	}
+	
+	//protected void updateElephantSlots() {
+	//	if (!this.world.isRemote)
+	//	{
+	//		this.setElephantSaddled(!this.elephantChest.getStackInSlot(0).isEmpty() && this.canBeSaddled());
+	//	}
+	//}
 	
 	@Nullable
 	public UUID getOwnerUniqueId() {
