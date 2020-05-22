@@ -2,7 +2,6 @@ package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityTameableGrazer;
-import com.covetedmobs.registry.ModObjects;
 import com.google.common.base.Optional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -55,6 +54,10 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 		
 		return flag;
+	}
+	
+	public boolean canBePushed() {
+		return !this.isBeingRidden();
 	}
 	
 	public void geneticAttributes(EntityAgeable ageable, EntityElephant elephant) {
@@ -272,13 +275,11 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		}
 	}
 	
-	public boolean wearsArmor()
-	{
+	public boolean wearsArmor() {
 		return false;
 	}
 	
-	public boolean isArmor(ItemStack stack)
-	{
+	public boolean isArmor(ItemStack stack) {
 		return false;
 	}
 	
@@ -296,13 +297,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 		return this.getControllingPassenger() instanceof EntityLivingBase;
 	}
 	
-	public boolean canBePushed()
-	{
-		return !this.isBeingRidden();
-	}
-	
-	public boolean canBeSaddled()
-	{
+	public boolean canBeSaddled() {
 		return true;
 	}
 	
