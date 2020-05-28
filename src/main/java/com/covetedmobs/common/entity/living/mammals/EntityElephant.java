@@ -172,6 +172,7 @@ public class EntityElephant extends ModEntityTameableGrazer {
 	protected void boostHealth(boolean tamed) {
 		if (tamed) getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(65);
 		if (tamed) getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(3);
+		if (tamed) getEntityAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS).setBaseValue(1.5);
 		else getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
 	}
 	
