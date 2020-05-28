@@ -27,7 +27,6 @@ public class EntityBlindworm extends ModEntityAnimal {
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
-		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
 	}
 	
 	@Override
