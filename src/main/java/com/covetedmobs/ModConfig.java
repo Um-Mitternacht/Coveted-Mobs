@@ -10,6 +10,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * Created by Joseph on 11/4/2019.
  */
+
+@SuppressWarnings("WeakerAccess")
+@Config(modid = CovetedMobs.MODID, name = CovetedMobs.NAME)
 public class ModConfig {
 	
 	@Config.Comment("Mob spawn settings")
