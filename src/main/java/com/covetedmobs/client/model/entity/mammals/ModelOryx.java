@@ -288,8 +288,8 @@ public class ModelOryx extends ModelBase {
 		this.RightLegFront01.rotateAngleZ = 0f;
 		this.RightLegBack01.rotateAngleZ = 0f;
 		this.LeftLegBack01.rotateAngleZ = 0f;
-		this.LeftLegFront01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-		this.RightLegFront01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+		this.LeftLegFront01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + -0.17453292519943295F;
+		this.RightLegFront01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + -0.17453292519943295F;
 		this.RightLegBack01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		this.LeftLegBack01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
 		
