@@ -44,6 +44,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	public EntityPelicanSpider(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/pelican_spider"), Items.SPIDER_EYE, Items.FERMENTED_SPIDER_EYE);
 		setSize(2.5f, 2.5f);
+		experienceValue = 25;
 	}
 	
 	@Override

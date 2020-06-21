@@ -2,6 +2,7 @@ package com.covetedmobs.common.entity.living.herps;
 
 import com.covetedmobs.CovetedMobs;
 import com.covetedmobs.common.entity.util.ModEntityAnimal;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +18,8 @@ public class EntityNewt extends ModEntityAnimal {
 	public EntityNewt(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/newt"));
 		setSize(1, 0.3f);
+		experienceValue = 5;
+		enumCreatureType();
 	}
 	
 	@Override
@@ -38,6 +41,17 @@ public class EntityNewt extends ModEntityAnimal {
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return stack.getItem() == Items.SPIDER_EYE;
+	}
+	
+	@Override
+	protected void despawnEntity() {
+		if (!hasCustomName()) {
+			super.despawnEntity();
+		}
+	}
+	
+	public EnumCreatureType enumCreatureType() {
+		return EnumCreatureType.AMBIENT;
 	}
 	
 	@Override
