@@ -1,7 +1,9 @@
 package com.covetedmobs.common.entity.living.mammals;
 
 import com.covetedmobs.CovetedMobs;
+import com.covetedmobs.common.entity.util.ModEntityAnimal;
 import com.covetedmobs.common.entity.util.ModEntityMob;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -16,7 +18,7 @@ import net.minecraft.world.World;
 /**
  * Created by Joseph on 3/18/2020.
  */
-public class EntityTiger extends ModEntityMob {
+public class EntityTiger extends ModEntityAnimal {
 	public EntityTiger(World world) {
 		super(world, new ResourceLocation(CovetedMobs.MODID, "entities/tiger"));
 		setSize(2.3f, 2.9f);
@@ -25,11 +27,6 @@ public class EntityTiger extends ModEntityMob {
 	@Override
 	protected int getSkinTypes() {
 		return 8;
-	}
-	
-	@Override
-	protected boolean isValidLightLevel() {
-		return true;
 	}
 	
 	@Override
@@ -55,7 +52,12 @@ public class EntityTiger extends ModEntityMob {
 	public int getMaxSpawnedInChunk() {
 		return 4;
 	}
-	
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable other) {
+		return new EntityTiger(this.world);
+	}
+
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
