@@ -37,8 +37,6 @@ import java.util.Set;
 
 //Credit to Twilight Forest devs for code used for pelican spider grabbing
 public class EntityPelicanSpider extends ModEntityTameable {
-
-	public int attackTimer = 0;
 	
 	protected static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityPelicanSpider.class, DataSerializers.BOOLEAN);
 	private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.SPIDER_EYE, Items.FERMENTED_SPIDER_EYE);
