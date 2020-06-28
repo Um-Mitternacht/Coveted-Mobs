@@ -82,9 +82,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		float f = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
-
-		this.setAttackingOnClient(true);
-		this.isAttackingFromServer();
 		
 		if (this.getPassengers().isEmpty() && !entity.isRiding()) {
 			entity.startRiding(this);
@@ -227,6 +224,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 		if (this.getHealth() < this.getMaxHealth() && !(ticksExisted % 200 > 5)) this.heal(2);
 		
 		if (!this.world.isRemote && (this.getAttackTarget() == null || this.getAttackTarget().isDead)) {
+			this.setAttackingOnClient(false);
 		}
 	}
 	
