@@ -10,14 +10,14 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  */
 @SuppressWarnings({"unused", "ConstantConditions"})
 public class ClientHandler {
-	
-	public static int ticksInGame = 0;
-	
-	@SubscribeEvent
-	public void clientTickEnd(TickEvent.ClientTickEvent event) {
-		if (event.phase == TickEvent.Phase.END) {
-			GuiScreen gui = Minecraft.getMinecraft().currentScreen;
-			if (gui == null || !gui.doesGuiPauseGame()) ++ticksInGame;
-		}
-	}
+
+    public static int ticksInGame = 0;
+
+    @SubscribeEvent
+    public void clientTickEnd(TickEvent.ClientTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            GuiScreen gui = Minecraft.getMinecraft().currentScreen;
+            if (gui == null || !gui.doesGuiPauseGame()) ++ticksInGame;
+        }
+    }
 }

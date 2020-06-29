@@ -7,12 +7,12 @@ import net.minecraft.inventory.Container;
  * Created by Joseph on 12/16/2019.
  */
 public class GuiElephant extends GuiContainer {
-	public GuiElephant(Container inventorySlotsIn) {
-		super(inventorySlotsIn);
-	}
-	
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+    public GuiElephant(Container inventorySlotsIn) {
+        super(inventorySlotsIn);
+    }
 
-	}
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+
+    }
 }

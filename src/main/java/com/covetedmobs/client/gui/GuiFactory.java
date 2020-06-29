@@ -12,23 +12,23 @@ import java.util.Set;
  * Created by Joseph on 11/6/2019.
  */
 public class GuiFactory implements IModGuiFactory {
-	public GuiFactory() {
-	}
-	
-	public void initialize(Minecraft minecraftInstance) {
-	}
-	
-	public boolean hasConfigGui() {
-		return true;
-	}
-	
-	
-	@Override
-	public GuiScreen createConfigGui(GuiScreen parentScreen) {
-		return new GuiConfig(parentScreen, CovetedMobs.MODID, CovetedMobs.NAME);
-	}
-	
-	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-		return null;
-	}
+    public GuiFactory() {
+    }
+
+    public void initialize(Minecraft minecraftInstance) {
+    }
+
+    public boolean hasConfigGui() {
+        return true;
+    }
+
+
+    @Override
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new GuiConfig(parentScreen, CovetedMobs.MODID, CovetedMobs.NAME);
+    }
+
+    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+        return null;
+    }
 }

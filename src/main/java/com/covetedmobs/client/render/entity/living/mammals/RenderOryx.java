@@ -13,25 +13,25 @@ import net.minecraft.util.ResourceLocation;
  * Created by Joseph on 12/1/2019.
  */
 public class RenderOryx extends RenderLiving<EntityOryx> {
-	private static final ResourceLocation TEX_BABY = new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_baby.png");
-	private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_1.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_2.png")};
-	
-	public RenderOryx(RenderManager manager) {
-		super(manager, new ModelOryx(), 0.1f);
-	}
-	
-	@Override
-	protected ResourceLocation getEntityTexture(EntityOryx entity) {
-		if (entity.isChild()) return TEX_BABY;
-		else if (!entity.isChild()) return TEX[entity.getDataManager().get(ModEntityAnimal.SKIN)];
-		return null;
-	}
-	
-	
-	@Override
-	protected void preRenderCallback(EntityOryx entity, float partialTickTime) {
-		super.preRenderCallback(entity, partialTickTime);
-		if (entity.isChild()) GlStateManager.scale(0.5, 0.5, 0.5);
-		else GlStateManager.scale(1.0, 1.0, 1.0);
-	}
+    private static final ResourceLocation TEX_BABY = new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_baby.png");
+    private static final ResourceLocation[] TEX = {new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_1.png"), new ResourceLocation(CovetedMobs.MODID, "textures/entity/oryxes/oryx_2.png")};
+
+    public RenderOryx(RenderManager manager) {
+        super(manager, new ModelOryx(), 0.1f);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityOryx entity) {
+        if (entity.isChild()) return TEX_BABY;
+        else if (!entity.isChild()) return TEX[entity.getDataManager().get(ModEntityAnimal.SKIN)];
+        return null;
+    }
+
+
+    @Override
+    protected void preRenderCallback(EntityOryx entity, float partialTickTime) {
+        super.preRenderCallback(entity, partialTickTime);
+        if (entity.isChild()) GlStateManager.scale(0.5, 0.5, 0.5);
+        else GlStateManager.scale(1.0, 1.0, 1.0);
+    }
 }
