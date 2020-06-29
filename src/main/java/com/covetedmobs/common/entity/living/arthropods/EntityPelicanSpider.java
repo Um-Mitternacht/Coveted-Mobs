@@ -79,7 +79,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
         return EnumCreatureAttribute.ARTHROPOD;
     }
 
-    //Somehow this cancer works
+    //Todo: Make animation last as long as it's being "ridden"
     @Override
     public boolean attackEntityAsMob(Entity entity) {
         float f = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
