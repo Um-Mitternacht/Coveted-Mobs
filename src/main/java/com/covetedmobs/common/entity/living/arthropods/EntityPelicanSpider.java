@@ -78,18 +78,20 @@ public class EntityPelicanSpider extends ModEntityTameable {
         return EnumCreatureAttribute.ARTHROPOD;
     }
 
+    //Somehow this cancer works
     @Override
     public boolean attackEntityAsMob(Entity entity) {
         float f = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
 
-        boolean flag = super.attackEntityAsMob(entity);
-        if (flag)
         if (this.getPassengers().isEmpty() && !entity.isRiding()) {
             entity.startRiding(this);
+        }
+
+        if (entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue())) {
+            applyEnchantments(this, entity);
             attackTimer = 10;
             world.setEntityState(this, (byte) 4);
-            if (entity instanceof EntityLivingBase && entity.isRiding())
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 1, false, false));
+            if (entity instanceof EntityLivingBase) ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 1, false, false));
         }
         return super.attackEntityAsMob(entity);
     }

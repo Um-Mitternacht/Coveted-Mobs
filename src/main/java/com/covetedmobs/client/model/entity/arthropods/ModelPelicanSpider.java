@@ -426,6 +426,7 @@ public class ModelPelicanSpider extends ModelBase {
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        EntityPelicanSpider spider = (EntityPelicanSpider) entityIn;
         float swingModifier = 0.3f;
         this.RLeg2_I.rotateAngleY = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.08726646259971647F;
         this.LLeg2_I.rotateAngleY = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.08726646259971647F;
@@ -448,6 +449,12 @@ public class ModelPelicanSpider extends ModelBase {
         this.RFang1.rotateAngleX = 0.27314402793711257F;
         this.LFang1.rotateAngleX = 0.27314402793711257F;
 
+        int i = spider.attackTimer;
+        if (i > 0) {
+            this.RFang1.rotateAngleX = -0.81869712141416456F;
+            this.LFang1.rotateAngleX = -0.81869712141416456F;
+        }
+
         this.RLeg2_I.rotateAngleY += f3;
         this.LLeg2_I.rotateAngleY += -f3;
         this.RLeg2_II.rotateAngleY += f4;
@@ -459,12 +466,6 @@ public class ModelPelicanSpider extends ModelBase {
     }
 
     public void setLivingAnimations(EntityLivingBase living, float limbSwing, float limbSwingAmount, float partialTickTime) {
-        EntityPelicanSpider spider = (EntityPelicanSpider) living;
-        int i = spider.attackTimer;
-        if (i > 0) {
-            this.RFang1.rotateAngleX = -0.81869712141416456F;
-            this.LFang1.rotateAngleX = -0.81869712141416456F;
-        }
     }
 
     /**
