@@ -91,10 +91,10 @@ public class EntityPelicanSpider extends ModEntityTameable {
         if (entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue())) {
             if (entity.isRiding()) {
                 applyEnchantments(this, entity);
-                attackTimer = 10;
+                attackTimer = 40;
                 world.setEntityState(this, (byte) 4);
                 if (entity instanceof EntityLivingBase)
-                    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 1, false, false));
+                    ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.POISON, 500, 2, false, false));
             }
         }
         return super.attackEntityAsMob(entity);
@@ -102,7 +102,7 @@ public class EntityPelicanSpider extends ModEntityTameable {
 
     @Override
     public void handleStatusUpdate(byte id) {
-        if (id == 4) attackTimer = 10;
+        if (id == 4) attackTimer = 40;
         else super.handleStatusUpdate(id);
     }
 
