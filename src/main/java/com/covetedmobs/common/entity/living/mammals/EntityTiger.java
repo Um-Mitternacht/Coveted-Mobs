@@ -53,11 +53,6 @@ public class EntityTiger extends ModEntityAnimal {
     }
 
     @Override
-    public EntityAgeable createChild(EntityAgeable other) {
-        return new EntityTiger(this.world);
-    }
-
-    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.4);
