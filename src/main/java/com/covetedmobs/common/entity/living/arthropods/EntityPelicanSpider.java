@@ -106,18 +106,6 @@ public class EntityPelicanSpider extends ModEntityTameable {
         else super.handleStatusUpdate(id);
     }
 
-    @Override
-    protected boolean canDespawn() {
-        return !(hasCustomName() || isTamed());
-    }
-
-    @Override
-    protected void despawnEntity() {
-        if (canDespawn()) {
-            super.despawnEntity();
-        }
-    }
-
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.isEntityInvulnerable(source)) {
             return false;
