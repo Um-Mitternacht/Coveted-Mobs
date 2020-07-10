@@ -31,7 +31,7 @@ public class RenderNewt extends RenderLiving<EntityNewt> {
     @Override
     protected void preRenderCallback(EntityNewt entity, float partialTickTime) {
         super.preRenderCallback(entity, partialTickTime);
-        if (entity.isChild()) GlStateManager.scale(0.2, 0.2, 0.2);
-        else GlStateManager.scale(0.3, 0.3, 0.3);
+        if (entity.isChild()) GlStateManager.scale(0.1, 0.1, 0.1);
+        else GlStateManager.scale(0.2, 0.2, 0.2);
     }
 }
