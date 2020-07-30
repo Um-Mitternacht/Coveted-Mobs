@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class EntityNewt extends ModEntityAnimal {
     public EntityNewt(World world) {
         super(world, new ResourceLocation(CovetedMobs.MODID, "entities/newt"));
-        setSize(1, 0.3f);
+        setSize(0.3f, 0.3f);
         experienceValue = 5;
         enumCreatureType();
     }
