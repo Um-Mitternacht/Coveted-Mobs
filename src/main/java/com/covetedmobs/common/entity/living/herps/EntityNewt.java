@@ -34,20 +34,8 @@ public class EntityNewt extends ModEntityAnimal {
     }
 
     @Override
-    protected boolean canDespawn() {
-        return !hasCustomName();
-    }
-
-    @Override
     public boolean isBreedingItem(ItemStack stack) {
         return stack.getItem() == Items.SPIDER_EYE;
-    }
-
-    @Override
-    protected void despawnEntity() {
-        if (!hasCustomName()) {
-            super.despawnEntity();
-        }
     }
 
     public EnumCreatureType enumCreatureType() {

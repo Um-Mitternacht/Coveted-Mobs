@@ -19,7 +19,6 @@ public class EntityBlindworm extends ModEntityAnimal {
         super(world, new ResourceLocation(CovetedMobs.MODID, "entities/blindworm"));
         setSize(0.3f, 0.3f);
         experienceValue = 5;
-        enumCreatureType();
     }
 
     @Override
@@ -32,21 +31,6 @@ public class EntityBlindworm extends ModEntityAnimal {
         super.onLivingUpdate();
     }
 
-    @Override
-    protected void despawnEntity() {
-        if (!hasCustomName()) {
-            super.despawnEntity();
-        }
-    }
-
-    public EnumCreatureType enumCreatureType() {
-        return EnumCreatureType.AMBIENT;
-    }
-
-    @Override
-    protected boolean canDespawn() {
-        return !hasCustomName();
-    }
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
