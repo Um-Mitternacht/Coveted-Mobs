@@ -30,8 +30,8 @@ import java.util.Set;
 public class ModEntities {
     public static int entity_id = 0;
 
-    public static final EntityEntry blindworm = createEntityEntry(EntityBlindworm.class, "blindworm", 0x954535, 0xEDC9AF, EnumCreatureType.AMBIENT, ModConfig.mobSpawns.blindworm.blindwormWeight, ModConfig.mobSpawns.blindworm.blindwormMin, ModConfig.mobSpawns.blindworm.blindwormMax, Arrays.asList(ModConfig.mobSpawns.blindworm.blindwormBiomes));
-    public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x555D50, 0xFF8C00, EnumCreatureType.AMBIENT, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
+    public static final EntityEntry blindworm = createEntityEntry(EntityBlindworm.class, "blindworm", 0x954535, 0xEDC9AF, EnumCreatureType.CREATURE, ModConfig.mobSpawns.blindworm.blindwormWeight, ModConfig.mobSpawns.blindworm.blindwormMin, ModConfig.mobSpawns.blindworm.blindwormMax, Arrays.asList(ModConfig.mobSpawns.blindworm.blindwormBiomes));
+    public static final EntityEntry newt = createEntityEntry(EntityNewt.class, "newt", 0x555D50, 0xFF8C00, EnumCreatureType.CREATURE, ModConfig.mobSpawns.newt.newtWeight, ModConfig.mobSpawns.newt.newtMin, ModConfig.mobSpawns.newt.newtMax, Arrays.asList(ModConfig.mobSpawns.newt.newtBiomes));
     public static final EntityEntry elephant = createEntityEntry(EntityElephant.class, "elephant", 0xC0C0C0, 0x555555);
     public static final EntityEntry oryx = createEntityEntry(EntityOryx.class, "oryx", 0xFFF8DC, 0xD2691E, EnumCreatureType.CREATURE, ModConfig.mobSpawns.oryx.oryxWeight, ModConfig.mobSpawns.oryx.oryxMin, ModConfig.mobSpawns.oryx.oryxMax, Arrays.asList(ModConfig.mobSpawns.oryx.oryxBiomes));
     public static final EntityEntry pelicanspider = createEntityEntry(EntityPelicanSpider.class, "pelicanspider", 0x9F8170, 0xDAA520, EnumCreatureType.CREATURE, ModConfig.mobSpawns.pelicanspider.pelicanspiderWeight, ModConfig.mobSpawns.pelicanspider.pelicanspiderMin, ModConfig.mobSpawns.pelicanspider.pelicanspiderMax, Arrays.asList(ModConfig.mobSpawns.pelicanspider.pelicanspiderBiomes));
